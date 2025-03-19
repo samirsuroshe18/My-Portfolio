@@ -273,40 +273,27 @@ export const Bio = {
       live: "https://github.com/samirsuroshe18/My-ChatApp/releases/download/1.0.0/app-debug.apk",
       github: "https://github.com/samirsuroshe18/My-ChatApp",
     },  
-    {
-      id: 3,
-      title: "InflluenceIQ ",
-      date: "Dec 2024 - Jan 2025",
-      description:
-        "InfluenceIQ is an AI-driven social media analytics platform designed to provide deep insights into social media engagement and content strategies. By leveraging Generative AI (GenAI) technologies, the platform processes user account data and answers insightful questions about content performance, audience engagement, and strategic improvements.",
-      image:
-        "imagelink",
-      tags: [
-        "React Js",
-        "Langflow",
-        "Node Js",
-        "Gen AI",
-        "Express Js",
-        "Data stax",
-        "Redux",
-      ],
-      category: "web app",
-      github: "github",
-      webapp: "link",
-    },
-    {
-      id: 4,
-      title: "Weather App ",
-      date: "Jan 2024 ",
-      description:
-        "Stay ahead of the forecast with our cutting-edge React JS weather app, powered by the OpenWeather API. Effortlessly track current weather conditions, hourly forecasts, and extended outlooks with intuitive navigation and sleek design. With real-time updates and accurate data, our app ensures you're always prepared for whatever Mother Nature throws your way. Whether you're planning outdoor activities or simply staying informed, our React JS weather app has you covered, rain or shine.",
-      image:
-        "",
-      tags: ["React JS", "OpenWeather API", "Axios",],
-      category: "web app",
-      github: "",
-      webapp: "",
-    },
+    // {
+    //   id: 3,
+    //   title: "InflluenceIQ ",
+    //   date: "Dec 2024 - Jan 2025",
+    //   description:
+    //     "InfluenceIQ is an AI-driven social media analytics platform designed to provide deep insights into social media engagement and content strategies. By leveraging Generative AI (GenAI) technologies, the platform processes user account data and answers insightful questions about content performance, audience engagement, and strategic improvements.",
+    //   image:
+    //     "imagelink",
+    //   tags: [
+    //     "React Js",
+    //     "Langflow",
+    //     "Node Js",
+    //     "Gen AI",
+    //     "Express Js",
+    //     "Data stax",
+    //     "Redux",
+    //   ],
+    //   category: "web app",
+    //   github: "github",
+    //   live: "link",
+    // },
   ];
   
   export const TimeLineData = [
