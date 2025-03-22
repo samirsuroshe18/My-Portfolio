@@ -30,9 +30,9 @@ export const Bio = {
       " Software Developer skilled in full-stack web and mobile app development using Flutter, React, and Node.js. Proficient in native Android development with Java and Kotlin, and experienced in deploying cloud-based applications on AWS. Passionate about solving real-world problems, writing clean code, and collaborating on impactful projects.",
     github: "https://github.com/samirsuroshe18",
     resume: "https://drive.google.com/file/d/1-CLSqsK0fE5eJKRaPGMUzzsMIjrtxV7f/view?usp=sharing",
-    linkedin: "https://www.linkedin.com/in/pranay-sanap-0b09282b6/",
-    twitter: "https://x.com/pranay_sanap",
-    Mail: "mailto:pranaysanap10@gmail.com",
+    linkedin: "https://www.linkedin.com/in/samir-suroshe/",
+    twitter: "https://x.com/SamirSuroshe",
+    Mail: "mailto:sameersuroshe50@gmail.com",
   };
   
   export const skills = [
