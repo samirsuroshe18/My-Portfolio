@@ -27,6 +27,7 @@ const Card = styled.div`
   flex-direction: column;
   gap: 14px;
   transition: all 0.5s ease-in-out;
+  position: relative;
 
   &:hover {
     transform: translateY(-10px);
@@ -36,6 +37,22 @@ const Card = styled.div`
   &:hover ${Button} {
     display: block;
   }
+`;
+
+const Label = styled.div`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #3498db;
+  color: ${({ theme }) => theme.white};
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 `;
 
 const Image = styled.img`
@@ -152,7 +169,8 @@ const Certificate = styled.a`
 
 const HackathonCard = ({ hackathon, setOpenModal }) => {
   return (
-    <Card onClick={() => setOpenModal({ state: true, hackathon: hackathon })}>
+    <Card onClick={() => setOpenModal({ state: true, project: hackathon })}>
+      <Label>Hackathon</Label>
       <Image src={hackathon.image} />
       <Tags>
         {hackathon.tags?.map((tag, index) => (
@@ -172,16 +190,6 @@ const HackathonCard = ({ hackathon, setOpenModal }) => {
           <Avatar key={index} src={member.img} />
         ))}
       </Members>
-      {hackathon?.certificate && (
-        <Certificate
-          href={hackathon.certificate}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()} // ✅ prevent modal open
-        >
-          View Certificate
-        </Certificate>
-      )}
     </Card>
   );
 };

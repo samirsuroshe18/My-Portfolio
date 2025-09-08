@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+const Button = styled.button`
+  display: none;
+  width: 100%;
+  padding: 10px;
+  background-color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text_black};
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.8s ease-in-out;
+`;
+
 const Card = styled.div`
   width: 330px;
   height: 520px;
@@ -13,16 +27,21 @@ const Card = styled.div`
   flex-direction: column;
   gap: 14px;
   transition: all 0.5s ease-in-out;
+  position: relative;
+
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 0 50px 4px rgba(0, 0, 0, 0.6);
     filter: brightness(1.1);
   }
+  &:hover ${Button} {
+    display: block;
+  }
 `;
 
 const Image = styled.img`
   width: 100%;
-  max-height: 160px;
+  max-height: 180px;
   object-fit: contain;
   background-color: ${({ theme }) => theme.white};
   border-radius: 10px;
@@ -30,16 +49,20 @@ const Image = styled.img`
 `;
 
 const Details = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0px;
+  padding: 0px 2px;
 `;
 
 const Title = styled.div`
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: ${({ theme }) => theme.text_secondary};
+  overflow: hidden;
   display: -webkit-box;
+  max-width: 100%;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -47,67 +70,79 @@ const Title = styled.div`
 `;
 
 const Project = styled.div`
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.text_secondary};
+  margin-top: 2px;
 `;
 
 const Date = styled.div`
   font-size: 12px;
+  margin-left: 2px;
+  font-weight: 400;
   color: ${({ theme }) => theme.text_secondary + 80};
+  @media only screen and (max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 
 const Description = styled.div`
-  font-size: 13px;
+  font-weight: 400;
   color: ${({ theme }) => theme.text_secondary + 99};
-  margin-top: 6px;
+  overflow: hidden;
+  margin-top: 8px;
   display: -webkit-box;
+  max-width: 100%;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  overflow: hidden;
   text-overflow: ellipsis;
 `;
 
 const Tags = styled.div`
+  width: 100%;
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
+  margin-top: 4px;
 `;
 
 const Tag = styled.span`
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 400;
   color: ${({ theme }) => theme.primary};
   background-color: ${({ theme }) => theme.primary + 15};
   padding: 2px 8px;
-  border-radius: 8px;
+  border-radius: 10px;
 `;
 
-const Links = styled.div`
-  margin-top: auto;
-  display: flex;
-  gap: 10px;
-`;
-
-const LinkButton = styled.a`
-  flex: 1;
-  text-align: center;
-  padding: 8px 0;
-  font-size: 12px;
-  font-weight: 600;
+const Label = styled.div`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #27ae60;
   color: ${({ theme }) => theme.white};
-  background-color: ${({ theme }) => theme.primary};
-  border-radius: 6px;
-  text-decoration: none;
-  transition: background 0.3s;
-  &:hover {
-    background-color: ${({ theme }) => theme.primary + "cc"};
-  }
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 `;
 
-const OpenSourceCard = ({ contribution }) => {
+const OpenSourceCard = ({ contribution, setOpenModal }) => {
   return (
-    <Card>
+    <Card onClick={() => setOpenModal({ state: true, project: contribution })}>
+      <Label>OpenSource</Label>
       <Image src={contribution.image} alt={contribution.title} />
+      <Tags>
+        {contribution.tags?.map((tag, index) => (
+          <Tag key={index}>{tag}</Tag>
+        ))}
+      </Tags>
+
       <Details>
         <Title>{contribution.title}</Title>
         <Project>{contribution.project}</Project>
@@ -116,33 +151,6 @@ const OpenSourceCard = ({ contribution }) => {
         </Date>
         <Description>{contribution.description}</Description>
       </Details>
-
-      <Tags>
-        {contribution.tags?.map((tag, index) => (
-          <Tag key={index}>{tag}</Tag>
-        ))}
-      </Tags>
-
-      <Links>
-        {contribution.pullRequest && (
-          <LinkButton
-            href={contribution.pullRequest}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View PR
-          </LinkButton>
-        )}
-        {contribution.repository && (
-          <LinkButton
-            href={contribution.repository}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Repo
-          </LinkButton>
-        )}
-      </Links>
     </Card>
   );
 };

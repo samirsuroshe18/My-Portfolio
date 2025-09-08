@@ -71,8 +71,6 @@ const Skill = styled.div`
     max-width: 330px;
     padding: 10px 36px;
   }
-
-
 `
 
 const SkillTitle = styled.h2`
@@ -117,6 +115,15 @@ const SkillImage = styled.img`
   height: 24px;
 `
 
+const Image = styled.img`
+  width: 24px;
+  height: 24px;
+  filter: ${({ theme }) => 
+    theme.bg === '#1C1C27' || theme.bg === '#000000' || theme.bg?.includes('1C1C27')
+      ? 'brightness(0) invert(1)' 
+      : 'brightness(0) invert(0)'
+  };
+`
 
 const Skills = () => {
   return (
@@ -130,9 +137,9 @@ const Skills = () => {
             <Skill key={index}>
               <SkillTitle>{skill.title}</SkillTitle>
               <SkillList>
-                {skill.skills.map((item, index) => (
+                {skill.skills.map((item, index) => ( 
                   <SkillItem key={index}>
-                    <SkillImage src={item.image}/>
+                    {item.name === 'Render' || item.name === 'MySQL' || item.name === 'Express.js' ? <Image src={item.image}/> : <SkillImage src={item.image}/>}
                     {item.name}
                   </SkillItem>
                 ))}

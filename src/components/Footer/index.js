@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import MailIcon from '@mui/icons-material/Mail';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-// import InstagramIcon from '@mui/icons-material/Instagram';
+import medium from '../../assets/medium.png';
 import { Bio } from '../../data/constants';
 
 const FooterContainer = styled.div`
@@ -84,6 +84,17 @@ const Copyright = styled.p`
   text-align: center;
 `;
 
+const MediumIcon = styled.img`
+  width: 30px;
+  height: 30px;
+  filter: ${({ theme }) => 
+    theme.bg === '#1C1C27' || theme.bg === '#000000' || theme.bg?.includes('1C1C27')
+      ? 'brightness(0) invert(1)' 
+      : 'brightness(0) invert(0)'
+  };
+  transition: filter 0.3s ease-in-out;
+`;
+
 function Footer() {
   return (
     <FooterContainer>
@@ -98,9 +109,9 @@ function Footer() {
         </Nav>
         <SocialMediaIcons>
           <SocialMediaIcon href={Bio.Mail} target="display"><MailIcon/></SocialMediaIcon>
-          <SocialMediaIcon href={Bio.twitter} target="display"><TwitterIcon/></SocialMediaIcon>
           <SocialMediaIcon href={Bio.linkedin} target="display"><LinkedInIcon /></SocialMediaIcon>
-          {/* <SocialMediaIcon href={Bio.insta} target="display"><InstagramIcon /></SocialMediaIcon> */}
+          <SocialMediaIcon href={Bio.medium} target="display"><MediumIcon src={medium} alt="Medium" /></SocialMediaIcon>
+          <SocialMediaIcon href={Bio.twitter} target="display"><TwitterIcon/></SocialMediaIcon>
         </SocialMediaIcons>
         <Copyright>
           &copy; 2025 Samir Suroshe. All rights reserved.

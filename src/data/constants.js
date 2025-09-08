@@ -28,6 +28,10 @@ import pranay from '../assets/pranay.jpeg';
 import pullrequest from '../assets/pullrequest.jpeg';
 import levelsupermind from '../assets/levelsupermind.png';
 import levelsupermindcert from '../assets/levelsupermindcert.png';
+import hackfusioncert from '../assets/hackfusioncert.png';
+import asset from '../assets/asset-management.png';
+import gloria from '../assets/gloria-connect.png';
+import newsapp from '../assets/newsapp.png';
 
 export const Bio = {
   name: "Samir Suroshe",
@@ -42,6 +46,7 @@ export const Bio = {
   resume: "https://drive.google.com/file/d/1-CLSqsK0fE5eJKRaPGMUzzsMIjrtxV7f/view?usp=sharing",
   linkedin: "https://www.linkedin.com/in/samir-suroshe/",
   twitter: "https://x.com/SamirSuroshe",
+  medium: "https://medium.com/@sameersuroshe50",
   Mail: "mailto:sameersuroshe50@gmail.com",
 };
 
@@ -194,7 +199,6 @@ export const skills = [
   },
 ];
 
-
 export const experiences = [
   {
     id: 0,
@@ -230,11 +234,72 @@ export const education = [
 
 export const projects = [
   {
+    id: 10,
+    image: gloria,
+    title: "Visitor Management System",
+    description: `This is a Flutter mobile application built for a client with a Node.js + Express backend to simplify visitor entry management in housing societies. It provides real-time notifications, secure authentication, and role-based access for residents and security staff.  
+
+✨ Key Features:
+🔑 Google Sign-In: Quick and secure login for users  
+🔔 Real-time Notifications: Security guards receive visitor requests instantly via FCM  
+✅ Instant Actions: Guards can approve/reject entry directly from notification buttons  
+📲 Deep Linking: Notification click opens app with a pop-up entry approval screen  
+🏠 Resident Module: Residents can send visitor entry requests with ease  
+📄 Gate Pass: Automatic generation of visitor gate passes  
+📢 Notices: Dedicated module for announcements to residents  
+🛠️ Complaints: Residents can raise and track issues efficiently  
+🔒 Secure Auth: JWT-based authentication ensures safe API communication  
+
+🛠️ Tech Stack:
+Frontend (Mobile): Flutter (Dart)  
+Backend: Node.js + Express  
+Database: MongoDB  
+Authentication: Google Sign-In + JWT Tokens  
+Push Notifications: Firebase Cloud Messaging (FCM)  
+IDE: Android Studio / VS Code  
+
+This project was custom-built for my client to digitalize visitor entry, reduce manual processes, and improve security in housing societies.`,
+    date: "Nov 2024 - Aug 2025",
+    tags: [
+      "Android Studio",
+      "Flutter",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Cloudinary",
+      "flutter_bloc",
+      "FCM",
+      "Firebase",
+    ],
+    youtube: "https://www.youtube.com/watch?v=FPaw3PvsLoE",
+    category: "android app",
+  },
+  {
+    id: 11,
+    image: newsapp,
+    title: "News App",
+    description: "The News App is an Android application built using Jetpack Compose, MVVM, and Clean Architecture. It provides users with the latest news articles in a clean, modern, and user-friendly interface. This project serves as a hands-on learning experience to explore Compose UI, modular architecture, and best practices in Android development.",
+    date: "July 2025 - Aug 2025",
+    tags: [
+      "Android Studio",
+      "Jetpack Compose",
+      "MVVM + Clean Architecture",
+      "Kotlin",
+      "Retrofit + OkHttp",
+      "Hilt",
+      "NewsAPI",
+    ],
+    live: "https://github.com/samirsuroshe18/NewsApp/releases/tag/v1.0.0",
+    github: "https://github.com/samirsuroshe18/NewsApp",
+    youtube: "https://www.youtube.com/watch?v=oaX4AnNs5pE",
+    category: "android app",
+  },
+  {
     id: 0,
-    title: "Wellbeing",
-    date: "Jan 2024 - Feb 2024",
-    description: "The Wellbeing App is an Android application designed to promote mental, creative and emotional wellbeing by encouraging users, particularly teenagers and people, to engage in positive creative activities and tasks. It was created to address the growing need for tools that support mental health and foster a sense of community and keep creative and positive. The app allows users to create tasks related to good deeds or creative, earn points (wellpoints) for completing tasks, and connect with others who share similar interests in promoting wellbeing. The project is important to us as it aims to make a positive impact on the lives of individuals and communities. It was created in Feb 2024 and is available for download on Github. To use the app, simply download .apk file from the github and install on your android device, create an account, and start completing tasks to earn wellpoints.",
     image: wellbeing,
+    title: "Wellbeing",
+    description: "The Wellbeing App is an Android application designed to promote mental, creative and emotional wellbeing by encouraging users, particularly teenagers and people, to engage in positive creative activities and tasks. It was created to address the growing need for tools that support mental health and foster a sense of community and keep creative and positive. The app allows users to create tasks related to good deeds or creative, earn points (wellpoints) for completing tasks, and connect with others who share similar interests in promoting wellbeing. The project is important to us as it aims to make a positive impact on the lives of individuals and communities. It was created in Feb 2024 and is available for download on Github. To use the app, simply download .apk file from the github and install on your android device, create an account, and start completing tasks to earn wellpoints.",
+    date: "Jan 2024 - Feb 2024",
     tags: [
       "Android Studio",
       "Java",
@@ -247,16 +312,17 @@ export const projects = [
       "Postman",
       "Figma",
     ],
-    category: "android app",
-    live: "https://github.com/samirsuroshe18/WellBeing-App/releases/download/1.0.0/wellbeing-v1.0.apk",
+    live: "https://github.com/samirsuroshe18/WellBeing-App/releases/tag/2.0.0",
     github: "https://github.com/samirsuroshe18/WellBeing-app---Android-studio",
+    youtube: "https://www.youtube.com/watch?v=Eou21K7bEVM",
+    category: "android app",
   },
   {
     id: 1,
-    title: "SOS Emergency App",
-    date: "Nov 2023 - Dec 2024",
-    description: "Our SOS application is designed to provide quick assistance during emergencies. It allows users to add and manage emergency contacts, customize emergency messages, access helpline numbers, and receive first aid information. The highlight of the app is the Emergency Mode feature, which, when activated, sends an SOS message along with the user's current location to registered emergency contacts. It was created in Dec 2023 and is available for download on Github. To use the app, simply download it from the github, and use it.",
     image: sos,
+    title: "SOS Emergency App",
+    description: "Our SOS application is designed to provide quick assistance during emergencies. It allows users to add and manage emergency contacts, customize emergency messages, access helpline numbers, and receive first aid information. The highlight of the app is the Emergency Mode feature, which, when activated, sends an SOS message along with the user's current location to registered emergency contacts. It was created in Dec 2023 and is available for download on Github. To use the app, simply download it from the github, and use it.",
+    date: "Nov 2023 - Dec 2024",
     tags: [
       "Android Studio",
       "Java",
@@ -264,16 +330,17 @@ export const projects = [
       "Figma",
       "Location",
     ],
-    category: "android app",
-    live: "https://github.com/samirsuroshe18/SOS-Emergency-App/releases/download/1.0.0/app-debug.apk",
+    live: "https://github.com/samirsuroshe18/SOS-Emergency-App/releases/tag/2.0.0",
     github: "https://github.com/samirsuroshe18/SOS-Emergency-App",
+    youtube: "https://www.youtube.com/watch?v=3Woo2rMs8ZU",
+    category: "android app",
   },
   {
     id: 2,
-    title: "Chat App",
-    date: "June 2023 - Aug 2023",
-    description: "My ChatApp is a messaging application for Android devices, designed to provide users with a seamless chatting experience similar to popular messaging apps like WhatsApp. It allows users to exchange messages individually or in group chats, register and log in using their Google accounts, and manage their profiles. It was created in July 2023 and is available for download on Github. To use the app, simply download .apk file from the github and install on your android device, create an account, and start chatting.",
     image: whatsapp,
+    title: "Chat App",
+    description: "My ChatApp is a messaging application for Android devices, designed to provide users with a seamless chatting experience similar to popular messaging apps like WhatsApp. It allows users to exchange messages individually or in group chats, register and log in using their Google accounts, and manage their profiles. It was created in July 2023 and is available for download on Github. To use the app, simply download .apk file from the github and install on your android device, create an account, and start chatting.",
+    date: "June 2023 - Aug 2023",
     tags: [
       "Android Studio",
       "Java",
@@ -283,17 +350,18 @@ export const projects = [
       "Erasor.io",
       "Figma",
     ],
-    category: "android app",
     live: "https://github.com/samirsuroshe18/My-ChatApp/releases/tag/2.0.0",
     github: "https://github.com/samirsuroshe18/My-ChatApp",
+    youtube: "https://www.youtube.com/watch?v=ScsVUOd-dFw",
+    category: "android app",
   },
   {
     id: 3,
-    title: "Social Media Analyzer",
-    date: "Dec 2024 - Jan 2025",
-    description:
-      "InfluenceIQ is an AI-driven social media analytics platform designed to provide deep insights into social media engagement and content strategies. By leveraging Generative AI (GenAI) technologies, the platform processes user account data and answers insightful questions about content performance, audience engagement, and strategic improvements.",
     image: InfluenceIQ,
+    title: "Social Media Analyzer",
+    description:
+    "InfluenceIQ is an AI-driven social media analytics platform designed to provide deep insights into social media engagement and content strategies. By leveraging Generative AI (GenAI) technologies, the platform processes user account data and answers insightful questions about content performance, audience engagement, and strategic improvements.",
+    date: "Dec 2024 - Jan 2025",
     tags: [
       "React Js",
       "Langflow",
@@ -304,9 +372,49 @@ export const projects = [
       "Redux",
       "Chart.js"
     ],
-    category: "web app",
     github: "https://github.com/TanishqMSD/socialmedia-analyzer",
     live: "https://influence-iq.vercel.app/",
+    category: "web app",
+  },
+  {
+    id: 9,
+    image: asset,
+    title: "Asset Management Dashboard",
+    description: `This is a web application built for a client using the MERN stack (MongoDB, Express, React, Node.js) to help organizations efficiently manage, track, and audit their valuable assets.
+
+✨ Key Features:
+📊 Dashboard View: Super Admin has a comprehensive view with complete audit logs.
+✅ Audit Management: Approve or reject submitted audits with filters for Approved, Rejected, and Pending.
+👥 User Management: Create and manage Admins, Auditors, and General Users with role-based access control.
+🖼️ Asset Management: Create, update, delete assets with auto-generated QR codes.
+📍 Location & State Tracking: Keep track of where assets are stored.
+🔎 QR Code Scanning: Instantly view asset details by scanning QR codes.
+📝 Audit Scheduling: Monthly and quarterly audits with proposed changes and attachments.
+📂 Report Export: Export audit reports to Excel for easy record keeping.
+
+🛠️ Tech Stack:
+Frontend: React + Redux
+Backend: Node.js + Express
+Database: MongoDB
+Authentication: JWT-based
+QR Code: QR Code Generator library
+Styling: Material UI
+IDE: VS Code
+
+This project was custom-built for my client to streamline asset tracking and auditing, enhancing operational efficiency and accountability.`,
+    date: "June 2025 - Aug 2025",
+    tags: [
+      "React Js",
+      "Langflow",
+      "Node Js",
+      "Gen AI",
+      "Express Js",
+      "Data stax",
+      "Redux",
+      "Chart.js"
+    ],
+    youtube: "https://www.youtube.com/watch?v=MtBXKxan9HM",
+    category: "web app",
   },
   {
     id: 4,
@@ -343,27 +451,52 @@ export const projects = [
     ],
     category: "web app",
     github: "https://github.com/TanishqMSD/hackfusion",
-    live: "https://invoisify-tech.vercel.app/",
+    // live: "https://invoisify-tech.vercel.app/",
   },
   {
     id: 6,
-    title: "College Transparency System",
+    title: "AdVise",
     organizer: "Level SuperMind Hackathon 2025",
     date: "Feb 2025",
     duration: "24 Hours",
     description:
-      "Automated system for digital voting, facilities booking, and complaint management with real-time tracking and an admin dashboard. Built during Level SuperMind Hackathon 2025 with 800+ coders.",
+      "Automated Research Tracking tool for Social Media Influencers. Features web scraping and GenAI integration for real-time content analysis and trend detection. Built during Level SuperMind Hackathon 2025 with 800+ coders.",
     image: levelsupermind,
-    tags: ["React Js", "Node Js", "Express Js", "MongoDB", "Tailwind", "JWT"],
+    tags: ["React Js", "Node Js", "Express Js", "MongoDB", "Tailwind", "JWT", "Gen AI", "Web Scraping", "Langchain"],
     certificate: levelsupermindcert,
+    github: "https://github.com/TanishqMSD/socialmedia-analyzer",
     members: [
-      { name: "Samir", img: samir },
-      { name: "Tanishq", img: tanishq },
-      { name: "Mohit", img: mohit },
-      { name: "Pranay", img: pranay }
+      { name: "Samir", img: samir, github: "https://github.com/samirsuroshe18", linkedin: "https://www.linkedin.com/in/samir-suroshe" },
+      { name: "Tanishq", img: tanishq, github: "https://github.com/TanishqMSD", linkedin: "https://www.linkedin.com/in/tanishq-kulkarni-0148682b6" },
+      { name: "Mohit", img: mohit, github: "https://github.com/mohit45v", linkedin: "https://www.linkedin.com/in/mohit45v/" },
+      { name: "Pranay", img: pranay, github: "https://github.com/pranaysanap", linkedin: "https://www.linkedin.com/in/pranay-sanap-0b09282b6/" }
     ],
     sponsors: ["DataStax", "AWS"],
     platformPartner: "Find Coder.io",
+    youtube: "https://www.youtube.com/watch?v=P8no7VJU9aU",
+    category: "hackathon",
+  },
+  {
+    id: 13,
+    title: "College Transparency System",
+    organizer: "Hackfusion 2.O 2025",
+    date: "Feb 2025",
+    duration: "36 Hours",
+    description:
+      "Automated Transparent College System built at Hackfusion. Features digital voting, facilities booking, and complaint management with real-time status tracking and administrative dashboard.",
+    image: hackfusion,
+    tags: ["React Js", "Node Js", "Express Js", "MongoDB", "Tailwind", "JWT"],
+    certificate: hackfusioncert,
+    github: "https://github.com/samirsuroshe18/level_supermind_hackathon_project",
+    members: [
+      { name: "Samir", img: samir, github: "https://github.com/samirsuroshe18", linkedin: "https://www.linkedin.com/in/samir-suroshe" },
+      { name: "Tanishq", img: tanishq, github: "https://github.com/TanishqMSD", linkedin: "https://www.linkedin.com/in/tanishq-kulkarni-0148682b6" },
+      { name: "Mohit", img: mohit, github: "https://github.com/mohit45v", linkedin: "https://www.linkedin.com/in/mohit45v/" },
+      { name: "Pranay", img: pranay, github: "https://github.com/pranaysanap", linkedin: "https://www.linkedin.com/in/pranay-sanap-0b09282b6/" }
+    ],
+    sponsors: ["Qskmeidentity"],
+    platformPartner: "CSE/IT Department, SGGSIE&T",
+    youtube: "https://www.youtube.com/watch?v=P8no7VJU9aU",
     category: "hackathon",
   },
   {
