@@ -143,10 +143,8 @@ const Skill = styled.div`
     }
 `
 
-
-
 const ExperienceCard = ({ experience }) => {
-    console.log(experience.doc);
+    
     return (
         <Card>
             <Top>

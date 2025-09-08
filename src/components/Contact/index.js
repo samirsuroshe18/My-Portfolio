@@ -129,8 +129,6 @@ filter: brightness(1);
 }    
 `
 
-
-
 const Contact = () => {
 
   //hooks
@@ -152,8 +150,6 @@ const Contact = () => {
         console.log(error.text);
       });
   }
-
-
 
   return (
     <Container id='contact'>

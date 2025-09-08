@@ -1,11 +1,11 @@
-import React from 'react'
 import { useState } from 'react'
 import { Container, Wrapper, Title, Desc, CardContainer, ToggleButtonGroup, ToggleButton, Divider } from './ProjectsStyle'
 import ProjectCard from '../Cards/ProjectCards'
 import { projects } from '../../data/constants'
+import OpenSourceCard from '../Cards/OpenSourceCard'
+import HackathonCard from '../Cards/HackathonCard'
 
-
-const Projects = ({openModal,setOpenModal}) => {
+const Projects = ({ openModal, setOpenModal }) => {
   const [toggle, setToggle] = useState('all');
   return (
     <Container id="projects">
@@ -32,27 +32,35 @@ const Projects = ({openModal,setOpenModal}) => {
             :
             <ToggleButton value="android app" onClick={() => setToggle('android app')}>MOBILE APP'S</ToggleButton>
           }
-          {/* <Divider />
-          {toggle === 'machine learning' ?
-            <ToggleButton active value="machine learning" onClick={() => setToggle('machine learning')}>MACHINE LEARNING</ToggleButton>
+          <Divider />
+          {toggle === 'hackathon' ?
+            <ToggleButton active value="hackathon" onClick={() => setToggle('hackathon')}>HACKATHON</ToggleButton>
             :
-            <ToggleButton value="machine learning" onClick={() => setToggle('machine learning')}>MACHINE LEARNING</ToggleButton>
-          } */}
+            <ToggleButton value="hackathon" onClick={() => setToggle('hackathon')}>HACKATHON</ToggleButton>
+          }
+          <Divider />
+          {toggle === 'open-source' ?
+            <ToggleButton active value="open-source" onClick={() => setToggle('open-source')}>OPEN-SRC CONTRIBUTION</ToggleButton>
+            :
+            <ToggleButton value="open-source" onClick={() => setToggle('open-source')}>OPEN-SRC CONTRIBUTION</ToggleButton>
+          }
         </ToggleButtonGroup>
         <CardContainer>
-          {toggle === 'all' && projects
-            .map((project) => (
-              <ProjectCard project={project} openModal={openModal} setOpenModal={setOpenModal}/>
-            ))}
           {projects
-            .filter((item) => item.category == toggle)
-            .map((project) => (
-              <ProjectCard project={project} openModal={openModal} setOpenModal={setOpenModal}/>
-            ))}
+            .filter((project) => toggle === 'all' || project.category === toggle)
+            .map((project) => {
+              if (project.category === 'hackathon') {
+                return <HackathonCard key={project.id} hackathon={project} openModal={openModal} setOpenModal={setOpenModal} />
+              } else if (project.category === 'open-source') {
+                return <OpenSourceCard key={project.id} contribution={project} openModal={openModal} setOpenModal={setOpenModal} />
+              } else {
+                return <ProjectCard key={project.id} project={project} openModal={openModal} setOpenModal={setOpenModal} />
+              }
+            })}
         </CardContainer>
       </Wrapper>
     </Container>
-  )
+  );
 }
 
 export default Projects
