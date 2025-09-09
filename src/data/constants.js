@@ -272,6 +272,7 @@ This project was custom-built for my client to digitalize visitor entry, reduce 
       "Firebase",
     ],
     youtube: "https://www.youtube.com/watch?v=FPaw3PvsLoE",
+    live: "https://play.google.com/store/apps/details?id=in.smartdwelliot.gloriaconnect.gloria_connect",
     category: "android app",
   },
   {
