@@ -4,7 +4,7 @@ export async function seedSiteSettings() {
   await SiteSettings.findOneAndUpdate(
     {},
     {
-      logoText: 'Aarav.dev',
+      logoText: "Samir's Portfolio",
       navItems: [
         { label: 'About', href: '#about', order: 0 },
         { label: 'Skills', href: '#skills', order: 1 },
@@ -14,11 +14,11 @@ export async function seedSiteSettings() {
         { label: 'Blog', href: '#blog', order: 5 },
         { label: 'Contact', href: '#contact', order: 6 },
       ],
-      footerText: `© ${new Date().getFullYear()} Aarav Mehta. All rights reserved.`,
-      accentColor: '#854CE6',
+      footerText: `© ${new Date().getFullYear()} Samir Suroshe. All rights reserved.`,
       showGithubButton: true,
-      metaTitle: 'Aarav Mehta — Full Stack & Mobile Developer',
-      metaDescription: 'Portfolio of Aarav Mehta, a full stack and mobile app developer specializing in the MERN stack and Flutter.',
+      metaTitle: 'Samir Suroshe',
+      metaDescription:
+        'Software Developer skilled in full-stack web and mobile app development using Flutter, React, and Node.js. Proficient in native Android development with Java and Kotlin, and experienced in deploying cloud-based applications on AWS.',
     },
     { upsert: true, setDefaultsOnInsert: true }
   );

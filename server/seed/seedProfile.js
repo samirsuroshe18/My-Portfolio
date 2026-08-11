@@ -5,32 +5,32 @@ export async function seedProfile() {
   await UserProfile.findOneAndUpdate(
     {},
     {
-      name: 'Aarav Mehta',
-      headline: 'Full Stack & Mobile App Developer',
-      roles: ['Full Stack Developer', 'Mobile App Developer', 'MERN Developer', 'Cloud Enthusiast'],
-      shortBio: 'I build fast, reliable products across web, mobile, and cloud.',
+      name: 'Samir Suroshe',
+      headline: '',
+      roles: ['Mobile Developer', 'Full Stack Developer', 'MERN Developer', 'DevOps Engineer'],
+      shortBio: '',
       description:
-        'Software developer specializing in the MERN stack and cross-platform mobile apps with Flutter. I enjoy turning ambiguous problems into clean, maintainable systems, and have shipped production apps used by real businesses. Currently exploring GenAI-powered developer tooling.',
-      avatarUrl: 'https://i.pravatar.cc/400?img=12',
-      location: 'Pune, India',
-      availability: 'Open to freelance & full-time opportunities',
-      githubUrl: 'https://github.com/aaravmehta-dev',
-      linkedinUrl: 'https://www.linkedin.com/in/aaravmehta-dev',
-      twitterUrl: 'https://x.com/aaravmehta_dev',
-      mediumUrl: 'https://medium.com/@aaravmehta.dev',
-      resumeUrl: 'https://example.com/aarav-mehta-resume.pdf',
-      contactEmail: 'aarav.mehta.dev@example.com',
+        'Software Developer skilled in full-stack web and mobile app development using Flutter, React, and Node.js. Proficient in native Android development with Java and Kotlin, and experienced in deploying cloud-based applications on AWS. Passionate about solving real-world problems, writing clean code, and collaborating on impactful projects.',
+      avatarUrl: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466729/my-portfolio/samir_qblgwh.jpg',
+      location: '',
+      availability: '',
+      githubUrl: 'https://github.com/samirsuroshe18',
+      linkedinUrl: 'https://www.linkedin.com/in/samir-suroshe/',
+      twitterUrl: 'https://x.com/SamirSuroshe',
+      mediumUrl: 'https://medium.com/@sameersuroshe50',
+      resumeUrl: 'https://drive.google.com/file/d/1-CLSqsK0fE5eJKRaPGMUzzsMIjrtxV7f/view?usp=sharing',
+      contactEmail: 'sameersuroshe50@gmail.com',
       isActive: true,
     },
     { upsert: true, setDefaultsOnInsert: true }
   );
 
   const socialLinks = [
-    { platform: 'github', label: 'GitHub', url: 'https://github.com/aaravmehta-dev', order: 0 },
-    { platform: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/aaravmehta-dev', order: 1 },
-    { platform: 'twitter', label: 'Twitter', url: 'https://x.com/aaravmehta_dev', order: 2 },
-    { platform: 'medium', label: 'Medium', url: 'https://medium.com/@aaravmehta.dev', order: 3 },
-    { platform: 'mail', label: 'Email', url: 'mailto:aarav.mehta.dev@example.com', order: 4 },
+    { platform: 'github', label: 'GitHub', url: 'https://github.com/samirsuroshe18', order: 0 },
+    { platform: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/samir-suroshe/', order: 1 },
+    { platform: 'twitter', label: 'Twitter', url: 'https://x.com/SamirSuroshe', order: 2 },
+    { platform: 'medium', label: 'Medium', url: 'https://medium.com/@sameersuroshe50', order: 3 },
+    { platform: 'mail', label: 'Email', url: 'mailto:sameersuroshe50@gmail.com', order: 4 },
   ];
 
   let count = 0;

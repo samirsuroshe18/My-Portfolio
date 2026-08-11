@@ -2,38 +2,28 @@ import { Experience } from '../models/Experience.js';
 
 const DATA = [
   {
+    companyLogo: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466721/my-portfolio/smartdwell_des6a9.png',
     role: 'Software Developer',
-    company: 'Nimbus Cloud Labs',
-    location: 'Pune, India (Hybrid)',
+    company: 'Smartdwell Technologies',
     startDate: new Date('2024-05-01'),
     endDate: null,
     isCurrent: true,
     description:
-      'Building and maintaining internal tools and client-facing products across the MERN stack and Flutter, with a focus on reliability and developer velocity.',
-    bulletPoints: [
-      'Built a visitor management app used by 100+ daily users across two housing societies',
-      'Shipped 3 React-based internal dashboards deployed on AWS EC2',
-      'Introduced CI checks that cut regression bugs in production releases by half',
-    ],
-    technologies: ['React', 'Node.js', 'Flutter', 'MongoDB', 'AWS'],
-    achievements: ['Reduced average deployment time from 40 minutes to under 10 minutes'],
+      "I was responsible for creating software solutions that aligned with the business needs. Developed a visitor management app that now supports 100+ daily users, along with a water level indication app built with Flutter. Built and deployed 3+ React-based apps on AWS ec2, helping streamline internal processes. Contributed to shaping the company's software capabilities, improving both operational efficiency and the user experience.",
+    technologies: ['React', 'Flutter', 'AWS EC2'],
     order: 0,
   },
   {
-    role: 'Android Developer Intern',
-    company: 'Brightpath Technologies',
-    location: 'Remote',
+    companyLogo: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466678/my-portfolio/ignitech_w5fovy.png',
+    role: 'Android Developer',
+    company: 'Ignitech',
     startDate: new Date('2023-06-01'),
     endDate: new Date('2023-07-31'),
     isCurrent: false,
     description:
-      'Worked on native Android features for a field-operations app, focusing on UI polish and sensor integrations.',
-    bulletPoints: [
-      'Redesigned two core screens using Material Components, improving usability feedback scores',
-      'Integrated device sensors (GPS, accelerometer) for a location-tagging feature',
-    ],
+      'Designed and implemented user-friendly interfaces using XML and Java, improving overall user experience and accessibility. Developed and maintained app features using Android Studio, Java, XML, SQLite, and sensors, ensuring seamless functionality and performance.',
     technologies: ['Java', 'XML', 'Android Studio', 'SQLite'],
-    certificateUrl: 'https://example.com/certificates/brightpath-internship.pdf',
+    certificateUrl: 'https://drive.google.com/file/d/1TyqB2LAeX_m2yAI2091QmU-YXxbv4Uwp/view?usp=sharing',
     order: 1,
   },
 ];

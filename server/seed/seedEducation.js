@@ -2,16 +2,16 @@ import { Education } from '../models/Education.js';
 
 const DATA = [
   {
-    institutionLogo: 'https://api.dicebear.com/7.x/shapes/svg?seed=polytechnic',
-    school: 'Government Polytechnic',
+    institutionLogo: 'https://gpthane.org.in/wp-content/uploads/2023/07/logo.png',
+    school: 'Government Polytechnic, Thane',
     degree: 'Diploma in Computer Engineering',
     field: 'Computer Engineering',
     startDate: new Date('2021-08-01'),
     endDate: new Date('2024-08-01'),
     isCurrent: false,
-    grade: '91.4%',
+    grade: '91.43%',
     description:
-      'Coursework in Data Structures, Algorithms, DBMS, and Computer Networks, with hands-on programming in C, C++, Java, and Python.',
+      'I completed a Diploma in Computer Engineering at Government Polytechnic, Thane, with an average percentage of 91.43%. My coursework included Data Structures, Algorithms, and DBMS, along with proficiency in programming languages like C, C++, Java, Python, and Android Studio, and a solid grasp of computer system fundamentals.',
     order: 0,
   },
 ];

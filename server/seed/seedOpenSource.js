@@ -2,19 +2,19 @@ import { OpenSourceContribution } from '../models/OpenSourceContribution.js';
 
 const DATA = [
   {
-    title: 'Fix keyboard focus trap in sync dialog',
-    projectName: 'NoteFlow (Flashcards App)',
-    repositoryUrl: 'https://github.com/noteflow-oss/noteflow-android',
-    pullRequestUrl: 'https://github.com/noteflow-oss/noteflow-android/pull/1842',
-    image: 'https://picsum.photos/seed/noteflow-pr/800/500',
+    title: 'Enter Key Handling in Sync AlertDialog',
+    projectName: 'AnkiDroid (Android Flashcards App)',
+    repositoryUrl: 'https://github.com/ankidroid/Anki-Android',
+    pullRequestUrl: 'https://github.com/ankidroid/Anki-Android/pull/18354',
+    image: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466700/my-portfolio/pullrequest_zkhlcv.jpg',
     description:
-      'Enhanced the sync error dialog by wiring the Enter key to trigger the primary action, improving keyboard accessibility for desktop-emulator users.',
-    technologies: ['Android', 'Java', 'Accessibility'],
-    tags: ['Open Source', 'Accessibility', 'UI/UX'],
+      "Enhanced AnkiDroid's sync error dialog by enabling the Enter key to directly trigger the OK button, improving accessibility and user experience. Implemented via an optional Enter key handler in AlertDialogs.",
+    technologies: ['Android', 'Java', 'Open Source', 'UI/UX', 'Accessibility'],
+    tags: ['Android', 'Java', 'Open Source', 'UI/UX', 'Accessibility'],
     status: 'Merged',
-    release: 'v2.21',
-    date: new Date('2025-06-10'),
-    members: [{ name: 'Aarav Mehta', avatarUrl: 'https://i.pravatar.cc/150?img=12' }],
+    release: 'AnkiDroid v2.21',
+    date: new Date('2025-06-01'),
+    members: [{ name: 'Samir Suroshe', avatarUrl: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466729/my-portfolio/samir_qblgwh.jpg' }],
     order: 0,
   },
 ];
