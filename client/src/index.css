@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: #ffffff;
+  --color-bg-light: #f0f0f0;
+  --color-card: #ffffff;
+  --color-card-light: #f7f7f7;
+  --color-border: #e5e5e5;
+  --color-primary: #854ce6;
+  --color-primary-2: #ff00c8;
+  --color-primary-rgb: 133, 76, 230;
+  --color-text-primary: #111111;
+  --color-text-secondary: #48494a;
+
+  --shadow-glow: 0 4px 24px 0 rgba(var(--color-primary-rgb), 0.18);
+}
+
+.dark {
+  --color-bg: #1c1c27;
+  --color-bg-light: #1c1e27;
+  --color-card: #171721;
+  --color-card-light: #191924;
+  --color-border: rgba(133, 76, 230, 0.15);
+  --color-primary: #854ce6;
+  --color-primary-2: #ff00e5;
+  --color-primary-rgb: 133, 76, 230;
+  --color-text-primary: #f2f3f4;
+  --color-text-secondary: #b1b2b3;
+
+  --shadow-glow: 0 4px 24px 0 rgba(var(--color-primary-rgb), 0.25);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 8px;
+  opacity: 0.6;
+}
