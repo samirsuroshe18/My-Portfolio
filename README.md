@@ -201,6 +201,10 @@ The client and the server are deployed to Vercel as two separate projects, each 
 - **Client** (`client/`): standard Vite build. `vercel.json` rewrites every path to `index.html` so client-side routes resolve on refresh. Set `VITE_API_BASE_URL` to the deployed API URL.
 - **Server** (`server/`): runs as a serverless function from `api/index.js`. `vercel.json` rewrites every path to that function. Set the server environment variables in the Vercel project settings, with `CORS_ORIGIN` pointing at the deployed client.
 
+## License
+
+Released under the [MIT License](LICENSE).
+
 ## Contact
 
 Samir Suroshe — [samirsuroshe.vercel.app](https://samirsuroshe.vercel.app/) · [GitHub](https://github.com/samirsuroshe18)
