@@ -22,7 +22,11 @@ export function mapHackathonToModal(hackathon) {
   const actions = [];
   if (hackathon.youtubeUrl) actions.push({ label: 'Watch Recap', href: hackathon.youtubeUrl, variant: 'danger' });
   if (hackathon.certificateUrl) actions.push({ label: 'View Certificate', href: hackathon.certificateUrl, variant: 'secondary' });
-  if (hackathon.githubUrl) actions.push({ label: 'View Code', href: hackathon.githubUrl, variant: 'primary' });
+  // the live link, when there is one, is the main action; the code link steps back
+  if (hackathon.githubUrl) {
+    actions.push({ label: 'View Code', href: hackathon.githubUrl, variant: hackathon.liveUrl ? 'secondary' : 'primary' });
+  }
+  if (hackathon.liveUrl) actions.push({ label: 'View Live', href: hackathon.liveUrl, variant: 'primary' });
 
   return {
     image: hackathon.image,

@@ -21,6 +21,7 @@ const hackathonAchievementSchema = new mongoose.Schema(
     tags: { type: [String], default: [] },
     certificateUrl: { type: String, trim: true, default: '' },
     githubUrl: { type: String, trim: true, default: '' },
+    liveUrl: { type: String, trim: true, default: '' },
     youtubeUrl: { type: String, trim: true, default: '' },
     members: { type: [hackathonMemberSchema], default: [] },
     sponsors: { type: [String], default: [] },
