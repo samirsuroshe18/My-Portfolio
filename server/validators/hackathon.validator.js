@@ -17,6 +17,7 @@ export const hackathonSchema = z.object({
   tags: z.array(z.string().trim()).optional().default([]),
   certificateUrl: z.string().trim().max(2000).optional().default(''),
   githubUrl: z.string().trim().max(2000).optional().default(''),
+  liveUrl: z.string().trim().max(2000).optional().default(''),
   youtubeUrl: z.string().trim().max(2000).optional().default(''),
   members: z.array(hackathonMemberSchema).optional().default([]),
   sponsors: z.array(z.string().trim()).optional().default([]),
