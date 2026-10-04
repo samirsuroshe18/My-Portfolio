@@ -21,6 +21,7 @@ const DEFAULTS = {
   status: 'completed',
   isFeatured: false,
   isPublished: true,
+  order: 0,
 };
 
 const FIELDS = [
@@ -58,6 +59,7 @@ const FIELDS = [
       { value: 'archived', label: 'Archived' },
     ],
   },
+  { name: 'order', label: 'Display Order', type: 'number', hint: 'Lower numbers are shown first' },
   { name: 'isFeatured', label: 'Feature this project', type: 'checkbox' },
   { name: 'isPublished', label: 'Published (visible on public site)', type: 'checkbox' },
 ];

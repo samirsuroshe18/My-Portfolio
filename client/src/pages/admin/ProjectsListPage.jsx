@@ -5,6 +5,7 @@ import { Button } from '../../components/ui/Button.jsx';
 import { useResourceList } from '../../hooks/useResourceList.js';
 
 const COLUMNS = [
+  { key: 'order', label: 'Order', sortable: true },
   { key: 'title', label: 'Title', sortable: true },
   { key: 'platform', label: 'Platform', sortable: true },
   { key: 'isFeatured', label: 'Featured', render: (row) => (row.isFeatured ? '⭐' : '') },
