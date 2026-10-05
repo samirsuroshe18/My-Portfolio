@@ -33,11 +33,11 @@ export function HomePage() {
       <main>
         <HeroSection />
         <AboutSection />
-        <SkillsSection />
         <ExperienceSection />
         <ProjectsSection />
         <OpenSourceSection />
         <HackathonsSection />
+        <SkillsSection />
         <EducationSection />
         <BlogsSection />
         <GitHubActivitySection />

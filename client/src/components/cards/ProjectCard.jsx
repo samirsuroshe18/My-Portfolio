@@ -1,13 +1,17 @@
 import { Badge } from '../ui/Badge.jsx';
+import { cn } from '../../utils/classNames.js';
 import { formatDateRange } from '../../utils/formatDate.js';
 
 const PLATFORM_LABEL = { web: 'Web App', android: 'Mobile App', ios: 'Mobile App', desktop: 'Desktop App' };
 
-export function ProjectCard({ project, onClick }) {
+export function ProjectCard({ project, onClick, hideOnMobile = false }) {
   return (
     <button
       onClick={onClick}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card text-left shadow-glow transition-all hover:-translate-y-1.5 hover:shadow-xl"
+      className={cn(
+        'group flex-col overflow-hidden rounded-2xl border border-border bg-card text-left shadow-glow transition-all hover:-translate-y-1.5 hover:shadow-xl',
+        hideOnMobile ? 'hidden sm:flex' : 'flex'
+      )}
     >
       <div className="relative">
         <img src={project.image} alt={project.title} className="h-44 w-full object-cover transition-transform group-hover:scale-105" />
