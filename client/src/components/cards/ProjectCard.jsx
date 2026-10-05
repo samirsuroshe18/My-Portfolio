@@ -11,6 +11,11 @@ export function ProjectCard({ project, onClick }) {
     >
       <div className="relative">
         <img src={project.image} alt={project.title} className="h-44 w-full object-cover transition-transform group-hover:scale-105" />
+        {project.isFeatured && (
+          <span className="absolute left-3 top-3 rounded-full bg-amber-500 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow">
+            ★ Featured
+          </span>
+        )}
         <span className="absolute right-3 top-3 rounded-full bg-primary px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow">
           {PLATFORM_LABEL[project.platform] || 'Project'}
         </span>
