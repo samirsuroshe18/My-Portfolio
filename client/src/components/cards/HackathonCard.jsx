@@ -1,5 +1,6 @@
 import { Badge } from '../ui/Badge.jsx';
 import { formatDate } from '../../utils/formatDate.js';
+import { optimizeImage } from '../../utils/optimizeImage.js';
 
 export function HackathonCard({ hackathon, onClick }) {
   return (
@@ -9,7 +10,7 @@ export function HackathonCard({ hackathon, onClick }) {
     >
       <div className="relative">
         {hackathon.image && (
-          <img src={hackathon.image} alt={hackathon.title} className="h-44 w-full object-cover transition-transform group-hover:scale-105" />
+          <img src={optimizeImage(hackathon.image, 800)} alt={hackathon.title} loading="lazy" decoding="async" className="h-44 w-full object-cover transition-transform group-hover:scale-105" />
         )}
         <span className="absolute right-3 top-3 rounded-full bg-blue-500 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow">
           Hackathon
@@ -35,7 +36,9 @@ export function HackathonCard({ hackathon, onClick }) {
             {hackathon.members.slice(0, 5).map((member, i) => (
               <img
                 key={i}
-                src={member.avatarUrl || 'https://api.dicebear.com/7.x/initials/svg?seed=' + member.name}
+                src={optimizeImage(member.avatarUrl, 72) || 'https://api.dicebear.com/7.x/initials/svg?seed=' + member.name}
+                loading="lazy"
+                decoding="async"
                 alt={member.name}
                 className="-ml-2 h-8 w-8 rounded-full border-2 border-card object-cover first:ml-0"
               />

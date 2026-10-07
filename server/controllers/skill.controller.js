@@ -27,8 +27,10 @@ export const skillControllers = createCrudControllers(Skill, {
 });
 
 export const getPublicSkills = asyncHandler(async (req, res) => {
-  const categories = await SkillCategory.find({ isActive: true }).sort({ order: 1 });
-  const skills = await Skill.find({ isActive: true }).sort({ order: 1 });
+  const [categories, skills] = await Promise.all([
+    SkillCategory.find({ isActive: true }).sort({ order: 1 }),
+    Skill.find({ isActive: true }).sort({ order: 1 }),
+  ]);
 
   const grouped = categories.map((category) => ({
     _id: category._id,

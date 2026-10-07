@@ -2,6 +2,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Modal } from '../ui/Modal.jsx';
 import { Badge } from '../ui/Badge.jsx';
 import { Button } from '../ui/Button.jsx';
+import { optimizeImage } from '../../utils/optimizeImage.js';
 
 /**
  * Single field-driven detail modal reused by ProjectCard, HackathonCard, and
@@ -13,7 +14,7 @@ export function ProjectDetailModal({ item, onClose }) {
     <Modal open={Boolean(item)} onClose={onClose}>
       {item && (
         <div>
-          {item.image && <img src={item.image} alt={item.title} className="mb-5 max-h-72 w-full rounded-xl object-cover" />}
+          {item.image && <img src={optimizeImage(item.image, 1400)} alt={item.title} className="mb-5 max-h-72 w-full rounded-xl object-cover" />}
 
           <h2 className="text-2xl font-bold text-text-primary">{item.title}</h2>
           {item.subtitle && <p className="mt-1 text-base text-text-secondary">{item.subtitle}</p>}
@@ -35,7 +36,7 @@ export function ProjectDetailModal({ item, onClose }) {
               <div className="flex flex-col gap-2">
                 {item.members.map((member) => (
                   <div key={member.name} className="flex items-center gap-3">
-                    {member.avatarUrl && <img src={member.avatarUrl} alt={member.name} className="h-9 w-9 rounded-full object-cover" />}
+                    {member.avatarUrl && <img src={optimizeImage(member.avatarUrl, 72)} alt={member.name} loading="lazy" decoding="async" className="h-9 w-9 rounded-full object-cover" />}
                     <span className="text-sm text-text-primary">{member.name}</span>
                     {member.githubUrl && (
                       <a href={member.githubUrl} target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-primary">

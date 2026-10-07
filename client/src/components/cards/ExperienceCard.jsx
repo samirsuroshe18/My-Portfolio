@@ -1,13 +1,14 @@
 import { Button } from '../ui/Button.jsx';
 import { Badge } from '../ui/Badge.jsx';
 import { formatDateRange } from '../../utils/formatDate.js';
+import { optimizeImage } from '../../utils/optimizeImage.js';
 
 export function ExperienceCard({ experience }) {
   return (
     <div className="rounded-2xl border border-border bg-card p-6 shadow-glow transition-transform hover:-translate-y-1">
       <div className="flex items-start gap-4">
         {experience.companyLogo && (
-          <img src={experience.companyLogo} alt={experience.company} className="h-12 w-12 rounded-lg bg-white object-contain p-1" />
+          <img src={optimizeImage(experience.companyLogo, 96)} alt={experience.company} loading="lazy" decoding="async" className="h-12 w-12 rounded-lg bg-white object-contain p-1" />
         )}
         <div className="flex-1">
           <h3 className="text-lg font-semibold text-text-primary">{experience.role}</h3>

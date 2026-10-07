@@ -1,4 +1,5 @@
 import { formatDateRange } from '../../utils/formatDate.js';
+import { optimizeImage } from '../../utils/optimizeImage.js';
 
 export function EducationCard({ education }) {
   return (
@@ -6,7 +7,9 @@ export function EducationCard({ education }) {
       <div className="flex items-start gap-4">
         {education.institutionLogo && (
           <img
-            src={education.institutionLogo}
+            src={optimizeImage(education.institutionLogo, 96)}
+            loading="lazy"
+            decoding="async"
             alt={education.school}
             className="h-12 w-12 rounded-lg bg-white object-contain p-1"
           />

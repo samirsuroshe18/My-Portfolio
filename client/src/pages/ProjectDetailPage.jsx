@@ -8,6 +8,7 @@ import { ErrorState } from '../components/ui/ErrorState.jsx';
 import { useFetch } from '../hooks/useFetch.js';
 import { projectsApi } from '../services/api/projects.js';
 import { mapProjectToModal } from '../utils/mapToModalItem.js';
+import { optimizeImage } from '../utils/optimizeImage.js';
 
 export function ProjectDetailPage() {
   const { id } = useParams();
@@ -36,7 +37,7 @@ export function ProjectDetailPage() {
 function ProjectDetailContent({ item }) {
   return (
     <article>
-      {item.image && <img src={item.image} alt={item.title} className="mb-6 max-h-96 w-full rounded-2xl object-cover" />}
+      {item.image && <img src={optimizeImage(item.image, 1600)} alt={item.title} className="mb-6 max-h-96 w-full rounded-2xl object-cover" />}
       <h1 className="text-3xl font-bold text-text-primary">{item.title}</h1>
       {item.meta && <p className="mt-1 text-sm text-text-secondary">{item.meta}</p>}
 

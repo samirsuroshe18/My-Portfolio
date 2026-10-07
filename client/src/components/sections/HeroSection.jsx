@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '../ui/Button.jsx';
 import { Spinner } from '../ui/Spinner.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
+import { optimizeImage } from '../../utils/optimizeImage.js';
 
 function useTypewriter(words) {
   const [text, setText] = useState('');
@@ -73,7 +74,9 @@ export function HeroSection() {
             <div className="absolute inset-0 -z-10 scale-110 rounded-full bg-gradient-to-br from-primary to-primary-2 opacity-30 blur-2xl" />
             {profile.avatarUrl && (
               <img
-                src={profile.avatarUrl}
+                src={optimizeImage(profile.avatarUrl, 640)}
+                fetchPriority="high"
+                decoding="async"
                 alt={profile.name}
                 className="h-64 w-64 rounded-full border-4 border-primary/60 object-cover shadow-2xl sm:h-80 sm:w-80"
               />

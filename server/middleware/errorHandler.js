@@ -32,6 +32,7 @@ export function errorHandler(err, req, res, next) {
     console.error(err);
   }
 
+  res.set('Cache-Control', 'no-store');
   res.status(statusCode).json({
     success: false,
     message,
