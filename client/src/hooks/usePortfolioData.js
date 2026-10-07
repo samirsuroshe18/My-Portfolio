@@ -23,6 +23,18 @@ const FETCHERS = {
   siteSettings: () => siteSettingsApi.getPublic(),
 };
 
+// Requests currently on the wire, so components asking for the same resource
+// at the same time (Navbar, Hero, About and Footer all read the profile) share one call.
+const inFlight = new Map();
+
+function fetchShared(cacheKey, fetcher) {
+  if (!inFlight.has(cacheKey)) {
+    const request = fetcher().finally(() => inFlight.delete(cacheKey));
+    inFlight.set(cacheKey, request);
+  }
+  return inFlight.get(cacheKey);
+}
+
 /**
  * Thin wrapper over useFetch mapping a resource key to its public API call,
  * so every public section fetches data through the same hook shape.
@@ -30,5 +42,6 @@ const FETCHERS = {
 export function usePortfolioData(resourceKey, params) {
   const fetcher = FETCHERS[resourceKey];
   if (!fetcher) throw new Error(`Unknown portfolio data resource: ${resourceKey}`);
-  return useFetch(() => fetcher(params), [resourceKey, JSON.stringify(params || {})]);
+  const paramsKey = JSON.stringify(params || {});
+  return useFetch(() => fetchShared(`${resourceKey}:${paramsKey}`, () => fetcher(params)), [resourceKey, paramsKey]);
 }
