@@ -1,5 +1,6 @@
 import { Badge } from '../ui/Badge.jsx';
 import { formatDate } from '../../utils/formatDate.js';
+import { optimizeImage } from '../../utils/optimizeImage.js';
 
 export function OpenSourceCard({ contribution, onClick }) {
   return (
@@ -9,7 +10,7 @@ export function OpenSourceCard({ contribution, onClick }) {
     >
       <div className="relative">
         {contribution.image && (
-          <img src={contribution.image} alt={contribution.title} className="h-44 w-full object-cover transition-transform group-hover:scale-105" />
+          <img src={optimizeImage(contribution.image, 800)} alt={contribution.title} loading="lazy" decoding="async" className="h-44 w-full object-cover transition-transform group-hover:scale-105" />
         )}
         <span className="absolute right-3 top-3 rounded-full bg-emerald-500 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow">
           Open Source

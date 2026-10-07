@@ -1,4 +1,5 @@
 import { formatDate } from '../../utils/formatDate.js';
+import { optimizeImage } from '../../utils/optimizeImage.js';
 
 export function MediumBlogCard({ blog }) {
   return (
@@ -9,7 +10,7 @@ export function MediumBlogCard({ blog }) {
       className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-glow transition-all hover:-translate-y-1.5 hover:shadow-xl"
     >
       {blog.coverImage && (
-        <img src={blog.coverImage} alt={blog.title} className="h-40 w-full object-cover transition-transform group-hover:scale-105" />
+        <img src={optimizeImage(blog.coverImage, 800)} alt={blog.title} loading="lazy" decoding="async" className="h-40 w-full object-cover transition-transform group-hover:scale-105" />
       )}
       <div className="flex flex-1 flex-col gap-2 p-5">
         <p className="text-xs font-medium text-text-secondary/80">{formatDate(blog.publishedAt)}</p>

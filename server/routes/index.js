@@ -13,22 +13,23 @@ import { contactPublicRouter, contactAdminRouter } from './contact.routes.js';
 import { siteSettingsPublicRouter, siteSettingsAdminRouter } from './siteSettings.routes.js';
 import { githubPublicRouter, githubAdminRouter } from './github.routes.js';
 import authRouter from './auth.routes.js';
+import { publicCache } from '../middleware/publicCache.js';
 
 const router = Router();
 
 // Public
 router.use('/auth', authRouter);
-router.use('/profile', profileRouter);
-router.use('/skills', skillPublicRouter);
-router.use('/experience', experiencePublicRouter);
-router.use('/education', educationPublicRouter);
-router.use('/projects', projectPublicRouter);
-router.use('/open-source', openSourcePublicRouter);
-router.use('/hackathons', hackathonPublicRouter);
-router.use('/blogs', blogPublicRouter);
-router.use('/github', githubPublicRouter);
+router.use('/profile', publicCache, profileRouter);
+router.use('/skills', publicCache, skillPublicRouter);
+router.use('/experience', publicCache, experiencePublicRouter);
+router.use('/education', publicCache, educationPublicRouter);
+router.use('/projects', publicCache, projectPublicRouter);
+router.use('/open-source', publicCache, openSourcePublicRouter);
+router.use('/hackathons', publicCache, hackathonPublicRouter);
+router.use('/blogs', publicCache, blogPublicRouter);
+router.use('/github', publicCache, githubPublicRouter);
 router.use('/contact', contactPublicRouter);
-router.use('/site-settings', siteSettingsPublicRouter);
+router.use('/site-settings', publicCache, siteSettingsPublicRouter);
 
 // Admin (all protected inside their own router)
 router.use('/admin/profile', adminProfileRouter);

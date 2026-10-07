@@ -1,6 +1,7 @@
 import { Badge } from '../ui/Badge.jsx';
 import { cn } from '../../utils/classNames.js';
 import { formatDateRange } from '../../utils/formatDate.js';
+import { optimizeImage } from '../../utils/optimizeImage.js';
 
 const PLATFORM_LABEL = { web: 'Web App', android: 'Mobile App', ios: 'Mobile App', desktop: 'Desktop App' };
 
@@ -14,7 +15,7 @@ export function ProjectCard({ project, onClick, hideOnMobile = false }) {
       )}
     >
       <div className="relative">
-        <img src={project.image} alt={project.title} className="h-44 w-full object-cover transition-transform group-hover:scale-105" />
+        <img src={optimizeImage(project.image, 800)} alt={project.title} loading="lazy" decoding="async" className="h-44 w-full object-cover transition-transform group-hover:scale-105" />
         {project.isFeatured && (
           <span className="absolute left-3 top-3 rounded-full bg-amber-500 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow">
             ★ Featured
