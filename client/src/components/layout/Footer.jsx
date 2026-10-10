@@ -1,44 +1,31 @@
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
-import { SocialLink } from './SocialLink.jsx';
-
-const FALLBACK_NAV_ITEMS = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
-];
 
 export function Footer() {
   const { data: settings } = usePortfolioData('siteSettings');
   const { data: profileData } = usePortfolioData('profile');
 
-  const navItems = settings?.navItems?.length ? settings.navItems : FALLBACK_NAV_ITEMS;
   const socialLinks = profileData?.socialLinks || [];
   const footerText = settings?.footerText || `© ${new Date().getFullYear()} All rights reserved.`;
-  const logoText = settings?.logoText || 'Portfolio';
 
   return (
-    <footer className="border-t border-border/60 bg-bg-light/40">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 px-5 py-10 text-center">
-        <p className="text-lg font-bold text-primary">{logoText}</p>
-
-        <nav className="flex flex-wrap items-center justify-center gap-6">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="text-sm text-text-secondary transition-colors hover:text-primary">
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
+    <footer className="mx-auto max-w-[1120px] px-[clamp(16px,5vw,48px)]">
+      <div className="flex flex-wrap justify-between gap-x-6 gap-y-2 border-t border-border py-7 text-sm text-text-secondary">
+        <p>{footerText}</p>
         {socialLinks.length > 0 && (
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap gap-x-5 gap-y-1">
             {socialLinks.map((link) => (
-              <SocialLink key={link._id} platform={link.platform} url={link.url} label={link.label} />
+              <a
+                key={link._id}
+                href={link.url}
+                target={link.platform === 'mail' ? undefined : '_blank'}
+                rel="noopener noreferrer"
+                className="underline decoration-1 underline-offset-4 transition-colors hover:text-text-primary"
+              >
+                {link.label || link.platform}
+              </a>
             ))}
           </div>
         )}
-
-        <p className="text-xs text-text-secondary">{footerText}</p>
       </div>
     </footer>
   );
