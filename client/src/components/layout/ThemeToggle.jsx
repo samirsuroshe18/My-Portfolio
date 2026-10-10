@@ -6,10 +6,9 @@ export function ThemeToggle({ className = '' }) {
   return (
     <button
       onClick={toggleTheme}
-      aria-label="Toggle theme"
-      className={`grid h-10 w-10 place-items-center rounded-full border border-primary/40 text-lg text-text-primary transition-all hover:scale-105 hover:bg-primary hover:text-white ${className}`}
+      className={`cursor-pointer whitespace-nowrap rounded-lg border border-border px-3 py-1.5 text-sm text-text-secondary transition-colors hover:border-text-secondary hover:text-text-primary ${className}`}
     >
-      {isDark ? '☀️' : '🌙'}
+      {isDark ? 'Light mode' : 'Dark mode'}
     </button>
   );
 }

@@ -46,7 +46,7 @@ export function DashboardSidebar({ open, onClose }) {
               className={({ isActive }) =>
                 cn(
                   'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
-                  isActive ? 'bg-primary text-white' : 'text-text-secondary hover:bg-bg-light hover:text-text-primary'
+                  isActive ? 'bg-primary text-on-primary' : 'text-text-secondary hover:bg-bg-light hover:text-text-primary'
                 )
               }
             >
