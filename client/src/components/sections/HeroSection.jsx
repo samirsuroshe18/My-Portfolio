@@ -1,89 +1,117 @@
-import { useEffect, useState } from 'react';
 import { Button } from '../ui/Button.jsx';
-import { Spinner } from '../ui/Spinner.jsx';
+import { LinkList } from '../ui/LinkList.jsx';
+import { HeroSkeleton } from '../ui/Skeleton.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
+import { formatDateRange } from '../../utils/formatDate.js';
 import { optimizeImage } from '../../utils/optimizeImage.js';
+import { pickGlance, pickProof } from '../../utils/portfolio.js';
 
-function useTypewriter(words) {
-  const [text, setText] = useState('');
-  const [wordIndex, setWordIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
+function GlanceRow({ label, title, lines }) {
+  return (
+    <div className="grid grid-cols-[84px_minmax(0,1fr)] gap-3 border-t border-border py-3 first:border-t-0">
+      <dt className="pt-0.5 text-[0.86rem] text-text-secondary">{label}</dt>
+      <dd className="text-[0.96rem] leading-snug">
+        <strong className="block font-semibold text-text-primary">{title}</strong>
+        {lines.filter(Boolean).map((line, index) => (
+          <span key={index} className={index === 0 ? 'block text-text-primary' : 'block text-[0.9rem] tabular-nums text-text-secondary'}>
+            {line}
+          </span>
+        ))}
+      </dd>
+    </div>
+  );
+}
 
-  useEffect(() => {
-    if (!words?.length) return;
-    const current = words[wordIndex % words.length];
-    const speed = deleting ? 40 : 80;
+function jobLines(job) {
+  return [[job.company, job.location].filter(Boolean).join(', '), formatDateRange(job.startDate, job.endDate, job.isCurrent)];
+}
 
-    const timeout = setTimeout(() => {
-      if (!deleting && text === current) {
-        setTimeout(() => setDeleting(true), 1200);
-        return;
-      }
-      if (deleting && text === '') {
-        setDeleting(false);
-        setWordIndex((i) => i + 1);
-        return;
-      }
-      setText(current.slice(0, deleting ? text.length - 1 : text.length + 1));
-    }, speed);
-
-    return () => clearTimeout(timeout);
-  }, [text, deleting, wordIndex, words]);
-
-  return text;
+function educationLines(education) {
+  const dates = formatDateRange(education.startDate, education.endDate, education.isCurrent);
+  return [education.school, [dates, education.grade].filter(Boolean).join(', ')];
 }
 
 export function HeroSection() {
   const { data, loading } = usePortfolioData('profile');
-  const profile = data?.profile;
-  const typedRole = useTypewriter(profile?.roles);
+  const { data: experience } = usePortfolioData('experience');
+  const { data: education } = usePortfolioData('education');
+  const { data: projects } = usePortfolioData('projects');
+  const { data: openSource } = usePortfolioData('openSource');
 
-  if (loading) return <Spinner className="min-h-[60vh]" />;
+  if (loading) return <HeroSkeleton />;
+
+  const profile = data?.profile;
   if (!profile) return null;
 
+  const glance = pickGlance(experience, education);
+  const hasGlance = glance.now || glance.before || glance.education;
+  const proof = pickProof(projects, openSource);
+  const roleLine = profile.headline || profile.roles?.slice(0, 2).join(' and ');
+  const socialLinks = (data.socialLinks || [])
+    .filter((link) => link.platform !== 'mail')
+    .map((link) => ({ label: link.label || link.platform, href: link.url }));
+
   return (
-    <section id="about" className="relative overflow-hidden pb-20 pt-16 sm:pt-24">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(133,76,230,0.18),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(255,0,200,0.12),transparent_45%)]" />
+    <section id="about" className="grid scroll-mt-24 gap-x-[72px] gap-y-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-end">
+      <div className="flex min-w-0 flex-col gap-6">
+        <h1 className="font-serif text-[clamp(3.2rem,8.4vw,6.4rem)] leading-[0.95] tracking-[-0.02em] text-text-primary">{profile.name}</h1>
+        {roleLine && <p className="text-[clamp(1.2rem,2.2vw,1.5rem)] font-medium leading-snug text-text-primary">{roleLine}</p>}
+        <p className="max-w-[52ch] text-[1.1rem] text-text-secondary">{profile.shortBio || profile.description}</p>
 
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-2 md:items-center">
-        <div>
-          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">{profile.availability}</p>
-          <h1 className="text-4xl font-bold leading-tight text-text-primary sm:text-5xl">
-            Hi, I'm <span className="text-primary">{profile.name}</span>
-          </h1>
-          <p className="mt-3 min-h-[2.5rem] text-xl font-medium text-text-secondary sm:text-2xl">
-            I am a <span className="text-primary">{typedRole}</span>
-            <span className="animate-pulse text-primary">|</span>
-          </p>
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-text-secondary">{profile.description}</p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            {profile.resumeUrl && (
-              <Button as="a" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer" size="lg">
-                Check Resume
-              </Button>
-            )}
-            <Button as="a" href="#contact" variant="outline" size="lg">
-              Get In Touch
+        <div className="flex flex-wrap gap-3">
+          {profile.resumeUrl && (
+            <Button as="a" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer" size="lg">
+              Read resume
             </Button>
-          </div>
+          )}
+          <Button as="a" href="#projects" variant="outline" size="lg">
+            See projects
+          </Button>
+          <Button as="a" href="#contact" variant="outline" size="lg">
+            Get in touch
+          </Button>
         </div>
 
-        <div className="flex justify-center md:justify-end">
-          <div className="relative">
-            <div className="absolute inset-0 -z-10 scale-110 rounded-full bg-gradient-to-br from-primary to-primary-2 opacity-30 blur-2xl" />
-            {profile.avatarUrl && (
-              <img
-                src={optimizeImage(profile.avatarUrl, 640)}
-                fetchPriority="high"
-                decoding="async"
-                alt={profile.name}
-                className="h-64 w-64 rounded-full border-4 border-primary/60 object-cover shadow-2xl sm:h-80 sm:w-80"
-              />
-            )}
-          </div>
-        </div>
+        <LinkList links={socialLinks} />
       </div>
+
+      {(profile.avatarUrl || hasGlance) && (
+        <aside aria-label="Summary" className="overflow-hidden rounded-[18px] border border-border bg-card sm:grid sm:grid-cols-[200px_minmax(0,1fr)] lg:block">
+          {profile.avatarUrl && (
+            <img
+              src={optimizeImage(profile.avatarUrl, 800)}
+              fetchPriority="high"
+              decoding="async"
+              alt={profile.name}
+              className="aspect-[5/4] w-full bg-skeleton object-cover object-[50%_18%] sm:aspect-auto sm:h-full lg:aspect-[5/4] lg:h-auto"
+            />
+          )}
+          {hasGlance && (
+            <dl className="px-[22px] pb-2.5 pt-1.5">
+              {glance.now && <GlanceRow label="Now" title={glance.now.role} lines={jobLines(glance.now)} />}
+              {glance.before && <GlanceRow label="Before" title={glance.before.role} lines={jobLines(glance.before)} />}
+              {glance.education && <GlanceRow label="Education" title={glance.education.degree} lines={educationLines(glance.education)} />}
+            </dl>
+          )}
+        </aside>
+      )}
+
+      {proof.length > 0 && (
+        <div className="grid border-t border-border sm:grid-cols-3 lg:col-span-2 lg:mt-6">
+          {proof.map((item) => (
+            <div
+              key={item.href}
+              className="flex flex-col gap-0.5 border-b border-border py-[18px] sm:border-b-0 sm:border-l sm:py-0 sm:pl-7 sm:pr-7 sm:pt-[22px] sm:first:border-l-0 sm:first:pl-0"
+            >
+              <strong className="font-semibold text-text-primary">{item.title}</strong>
+              <div className="flex-1">
+                <p className="line-clamp-2 text-[0.94rem] text-text-secondary">{item.text}</p>
+              </div>
+              <LinkList accent className="mt-2" links={[{ label: item.label, href: item.href }]} />
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
