@@ -12,7 +12,7 @@ const DEFAULTS = {
   logoUrl: '',
   navItems: [],
   footerText: '',
-  accentColor: '#854CE6',
+  accentColor: '#0E6B5E',
   showGithubButton: true,
   metaTitle: '',
   metaDescription: '',

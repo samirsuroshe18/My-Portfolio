@@ -1,6 +1,7 @@
 import { Button } from '../ui/Button.jsx';
 import { LinkList } from '../ui/LinkList.jsx';
 import { HeroSkeleton } from '../ui/Skeleton.jsx';
+import { ErrorState } from '../ui/ErrorState.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
 import { formatDateRange } from '../../utils/formatDate.js';
 import { optimizeImage } from '../../utils/optimizeImage.js';
@@ -32,13 +33,14 @@ function educationLines(education) {
 }
 
 export function HeroSection() {
-  const { data, loading } = usePortfolioData('profile');
+  const { data, loading, error, refetch } = usePortfolioData('profile');
   const { data: experience } = usePortfolioData('experience');
   const { data: education } = usePortfolioData('education');
   const { data: projects } = usePortfolioData('projects');
   const { data: openSource } = usePortfolioData('openSource');
 
   if (loading) return <HeroSkeleton />;
+  if (error) return <ErrorState message={error} onRetry={refetch} />;
 
   const profile = data?.profile;
   if (!profile) return null;

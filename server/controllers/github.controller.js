@@ -14,7 +14,7 @@ export const getPublicGithub = asyncHandler(async (req, res) => {
     return res.json(new ApiResponse(200, 'GitHub activity', { available: false }));
   }
 
-  const accentColor = settings?.accentColor || '#854CE6';
+  const accentColor = settings?.accentColor || '#0E6B5E';
   res.json(
     new ApiResponse(200, 'GitHub activity', {
       available: true,

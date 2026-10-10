@@ -3,7 +3,7 @@ import { formatDateRange, formatDate } from './formatDate.js';
 export function mapProjectToModal(project) {
   const actions = [];
   if (project.githubUrl) actions.push({ label: 'View Code', href: project.githubUrl, variant: 'secondary' });
-  if (project.youtubeUrl) actions.push({ label: 'Watch Demo', href: project.youtubeUrl, variant: 'danger' });
+  if (project.youtubeUrl) actions.push({ label: 'Watch Demo', href: project.youtubeUrl, variant: 'secondary' });
   if (project.liveUrl) {
     actions.push({ label: project.platform === 'android' ? 'Download App' : 'View Live', href: project.liveUrl, variant: 'primary' });
   }
@@ -20,7 +20,7 @@ export function mapProjectToModal(project) {
 
 export function mapHackathonToModal(hackathon) {
   const actions = [];
-  if (hackathon.youtubeUrl) actions.push({ label: 'Watch Recap', href: hackathon.youtubeUrl, variant: 'danger' });
+  if (hackathon.youtubeUrl) actions.push({ label: 'Watch Recap', href: hackathon.youtubeUrl, variant: 'secondary' });
   if (hackathon.certificateUrl) actions.push({ label: 'View Certificate', href: hackathon.certificateUrl, variant: 'secondary' });
   // the live link, when there is one, is the main action; the code link steps back
   if (hackathon.githubUrl) {

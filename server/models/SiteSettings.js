@@ -17,7 +17,7 @@ const siteSettingsSchema = new mongoose.Schema(
     footerText: { type: String, trim: true, maxlength: 200, default: '' },
     accentColor: {
       type: String,
-      default: '#854CE6',
+      default: '#0E6B5E',
       match: [/^#([0-9A-Fa-f]{3}){1,2}$/, 'Accent color must be a valid hex color'],
     },
     showGithubButton: { type: Boolean, default: true },

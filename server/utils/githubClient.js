@@ -7,7 +7,7 @@ export function isValidGithubUsername(username) {
 }
 
 /** Builds the embeddable contribution-chart image URL (see plan: no GitHub token needed). */
-export function buildContributionChartUrl(username, accentColorHex = '854CE6') {
+export function buildContributionChartUrl(username, accentColorHex = '0E6B5E') {
   const color = accentColorHex.replace('#', '');
   return `${env.githubChartBaseUrl}/${color}/${username}`;
 }
