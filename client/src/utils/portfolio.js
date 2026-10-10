@@ -1,10 +1,16 @@
 const MOBILE_PLATFORMS = ['android', 'ios'];
 const PULL_REQUEST_URL = /github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)/;
 
+const KIND_LABEL = { mobile: 'Mobile app', web: 'Web app', other: 'Project' };
+
 export function platformKind(platform) {
   if (MOBILE_PLATFORMS.includes(platform)) return 'mobile';
   if (platform === 'web') return 'web';
   return 'other';
+}
+
+export function kindLabel(platform) {
+  return KIND_LABEL[platformKind(platform)];
 }
 
 /** Splits projects into the featured ones and the rest for the chosen filter; counts cover the whole list. */

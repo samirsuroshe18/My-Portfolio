@@ -5,8 +5,8 @@ import { Button } from '../ui/Button.jsx';
 import { optimizeImage } from '../../utils/optimizeImage.js';
 
 /**
- * Single field-driven detail modal reused by ProjectCard, HackathonCard, and
- * OpenSourceCard. Each caller maps its own record into this shape instead of
+ * Single field-driven detail modal reused by projects, hackathons and
+ * open source contributions. Each caller maps its own record into this shape instead of
  * this component branching on a "category" field.
  */
 export function ProjectDetailModal({ item, onClose }) {
