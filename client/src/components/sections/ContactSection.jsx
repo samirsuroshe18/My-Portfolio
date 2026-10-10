@@ -8,12 +8,14 @@ function EmailAddress({ email }) {
   const [copied, setCopied] = useState(false);
 
   const copy = async (event) => {
+    // read before awaiting: the event's target is cleared once the handler yields
+    const address = event.currentTarget.previousElementSibling;
     try {
       await navigator.clipboard.writeText(email);
       setCopied(true);
     } catch {
       // copying can be refused; select the address so it can be copied by hand
-      window.getSelection()?.selectAllChildren(event.currentTarget.previousElementSibling);
+      window.getSelection()?.selectAllChildren(address);
     }
   };
 

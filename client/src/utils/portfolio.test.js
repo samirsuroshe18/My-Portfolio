@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof } from './portfolio.js';
+import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel } from './portfolio.js';
 
 const p = (over) => ({ _id: over.title, title: 't', platform: 'web', isFeatured: false, ...over });
 
@@ -91,5 +91,24 @@ describe('pickProof', () => {
   it('returns what exists', () => {
     expect(pickProof(null, null)).toEqual([]);
     expect(pickProof(projects, []).map((x) => x.title)).toEqual(['A', 'C']);
+  });
+});
+
+describe('navHref', () => {
+  it('points section links at the home page so they work from any page', () => {
+    expect(navHref('#projects')).toBe('/#projects');
+  });
+  it('leaves page paths and full addresses alone', () => {
+    expect(navHref('/resume')).toBe('/resume');
+    expect(navHref('https://example.com')).toBe('https://example.com');
+    expect(navHref(undefined)).toBe('/');
+  });
+});
+
+describe('currentJobLabel', () => {
+  it('says Now only for a job that is still current', () => {
+    expect(currentJobLabel({ isCurrent: true })).toBe('Now');
+    expect(currentJobLabel({ isCurrent: false })).toBe('Latest');
+    expect(currentJobLabel({})).toBe('Latest');
   });
 });

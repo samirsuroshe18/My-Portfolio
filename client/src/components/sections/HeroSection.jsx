@@ -5,7 +5,7 @@ import { ErrorState } from '../ui/ErrorState.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
 import { formatDateRange } from '../../utils/formatDate.js';
 import { optimizeImage } from '../../utils/optimizeImage.js';
-import { pickGlance, pickProof } from '../../utils/portfolio.js';
+import { currentJobLabel, pickGlance, pickProof } from '../../utils/portfolio.js';
 
 function GlanceRow({ label, title, lines }) {
   return (
@@ -90,7 +90,7 @@ export function HeroSection() {
           )}
           {hasGlance && (
             <dl className="px-[22px] pb-2.5 pt-1.5">
-              {glance.now && <GlanceRow label="Now" title={glance.now.role} lines={jobLines(glance.now)} />}
+              {glance.now && <GlanceRow label={currentJobLabel(glance.now)} title={glance.now.role} lines={jobLines(glance.now)} />}
               {glance.before && <GlanceRow label="Before" title={glance.before.role} lines={jobLines(glance.before)} />}
               {glance.education && <GlanceRow label="Education" title={glance.education.degree} lines={educationLines(glance.education)} />}
             </dl>

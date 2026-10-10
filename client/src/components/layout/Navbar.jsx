@@ -4,6 +4,7 @@ import { Button } from '../ui/Button.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
 import { useScrollSpy } from '../../hooks/useScrollSpy.js';
 import { cn } from '../../utils/classNames.js';
+import { navHref } from '../../utils/portfolio.js';
 
 const FALLBACK_NAV_ITEMS = [
   { label: 'Work', href: '#projects' },
@@ -38,7 +39,7 @@ export function Navbar() {
             {navItems.map((item) => (
               <li key={item.href}>
                 <a
-                  href={`/${item.href}`}
+                  href={navHref(item.href)}
                   aria-current={activeId === item.href.replace('#', '') ? 'true' : undefined}
                   className={cn(
                     'block whitespace-nowrap rounded-lg px-3 py-1.5 text-[0.95rem] font-medium transition-colors hover:text-text-primary',

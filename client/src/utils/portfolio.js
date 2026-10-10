@@ -87,3 +87,13 @@ export function pickProof(projects, openSource) {
 
   return proof;
 }
+
+/** Section links ("#projects") are pointed at the home page so they also work from other pages; anything else is left as written. */
+export function navHref(href) {
+  if (!href) return '/';
+  return href.startsWith('#') ? `/${href}` : href;
+}
+
+export function currentJobLabel(job) {
+  return job.isCurrent ? 'Now' : 'Latest';
+}
