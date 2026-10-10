@@ -54,9 +54,11 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           {showGithubButton && (
-            <Button as="a" href={githubUrl} target="_blank" rel="noopener noreferrer" variant="outline" size="sm" icon={<FaGithub />} className="hidden lg:inline-flex">
-              GitHub
-            </Button>
+            <div className="hidden lg:block">
+              <Button as="a" href={githubUrl} target="_blank" rel="noopener noreferrer" variant="outline" size="sm" icon={<FaGithub />}>
+                GitHub
+              </Button>
+            </div>
           )}
           <ThemeToggle />
         </div>

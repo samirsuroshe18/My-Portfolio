@@ -40,20 +40,20 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto flex w-full max-w-lg flex-col gap-4 rounded-2xl border border-border bg-card p-8 shadow-glow">
-      <h3 className="text-xl font-semibold text-text-primary">Send a message 🚀</h3>
+    <form onSubmit={handleSubmit} noValidate className="flex min-w-0 flex-col gap-4">
+      <Input label="Your name" autoComplete="name" className="bg-card" value={values.name} onChange={(e) => setField('name', e.target.value)} error={errors.name} required />
+      <Input label="Your email" type="email" autoComplete="email" className="bg-card" value={values.email} onChange={(e) => setField('email', e.target.value)} error={errors.email} required />
+      <Input label="Subject" className="bg-card" value={values.subject} onChange={(e) => setField('subject', e.target.value)} />
+      <Textarea label="Message" rows={5} className="bg-card" value={values.message} onChange={(e) => setField('message', e.target.value)} error={errors.message} required />
 
-      <Input placeholder="Your name" value={values.name} onChange={(e) => setField('name', e.target.value)} error={errors.name} required />
-      <Input placeholder="Your email" type="email" value={values.email} onChange={(e) => setField('email', e.target.value)} error={errors.email} required />
-      <Input placeholder="Subject" value={values.subject} onChange={(e) => setField('subject', e.target.value)} />
-      <Textarea placeholder="Message" rows={4} value={values.message} onChange={(e) => setField('message', e.target.value)} error={errors.message} required />
-
-      <Button type="submit" loading={status === 'submitting'} disabled={status === 'submitting'}>
-        Send Message
+      <Button type="submit" size="lg" className="self-start" loading={status === 'submitting'} disabled={status === 'submitting'}>
+        Send message
       </Button>
 
-      {status === 'success' && <p className="text-sm font-medium text-emerald-500">Message sent successfully — I'll get back to you soon!</p>}
-      {status === 'error' && <p className="text-sm font-medium text-red-500">{serverError}</p>}
+      <p role="status" className="min-h-6 text-sm font-medium">
+        {status === 'success' && <span className="text-primary">Message sent. I'll get back to you soon.</span>}
+        {status === 'error' && <span className="text-red-500">{serverError}</span>}
+      </p>
     </form>
   );
 }
