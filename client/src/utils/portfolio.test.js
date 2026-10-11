@@ -88,6 +88,10 @@ describe('pickProof', () => {
       { title: 'C', text: 'c app', label: 'Live demo', href: 'https://c.app', kind: 'live' },
     ]);
   });
+  it('skips featured projects whose link is only an APK download', () => {
+    const withApk = [projects[0], p({ title: 'Apk', isFeatured: true, liveUrl: 'https://github.com/u/r/releases/tag/v1' }), projects[2]];
+    expect(pickProof(withApk, []).map((x) => x.title)).toEqual(['A', 'C']);
+  });
   it('returns what exists', () => {
     expect(pickProof(null, null)).toEqual([]);
     expect(pickProof(projects, []).map((x) => x.title)).toEqual(['A', 'C']);

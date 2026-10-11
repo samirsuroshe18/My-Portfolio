@@ -73,7 +73,8 @@ function projectProof(project) {
 
 /** Up to three things a visitor can open straight away: a live project, a merged contribution, another live project. */
 export function pickProof(projects, openSource) {
-  const live = (projects || []).filter((project) => project.isFeatured && project.liveUrl);
+  // an APK download page is not something a visitor can try straight away, so it does not count here
+  const live = (projects || []).filter((project) => project.isFeatured && project.liveUrl && !project.liveUrl.includes('/releases/'));
   const contribution = (openSource || []).find((item) => item.pullRequestUrl);
   const proof = [];
 
