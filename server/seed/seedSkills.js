@@ -28,8 +28,8 @@ const DATA = [
     title: 'Backend & Database',
     skills: [
       { name: 'Node.js', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466697/my-portfolio/nodejs_z25nwz.png' },
-      { name: 'Express.js', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466675/my-portfolio/express_lswykx.png' },
-      { name: 'MySQL', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466695/my-portfolio/mysql_fblya2.png' },
+      { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
+      { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
       { name: 'MongoDB', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466693/my-portfolio/mongodb_t2tm1m.png' },
     ],
   },
@@ -56,9 +56,9 @@ const DATA = [
     skills: [
       { name: 'AWS', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466672/my-portfolio/aws_dcvxtw.png' },
       { name: 'Firebase', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466677/my-portfolio/firebase_vv2jso.png' },
-      { name: 'Netlify', icon: 'https://seeklogo.com/images/N/netlify-logo-BD8F8A77E2-seeklogo.com.png' },
+      { name: 'Netlify', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791702908/my-portfolio/netlify-original_ollaqj.svg' },
       { name: 'Vercel', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466716/my-portfolio/vercel_b87b3l.png' },
-      { name: 'Render', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466702/my-portfolio/render_kljyte.png' },
+      { name: 'Render', icon: 'https://cdn.simpleicons.org/render/000000' },
     ],
   },
 ];
