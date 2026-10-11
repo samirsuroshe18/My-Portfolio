@@ -88,13 +88,13 @@ describe('pickProof', () => {
       { title: 'C', text: 'c app', label: 'Live demo', href: 'https://c.app', kind: 'live' },
     ]);
   });
-  it('skips featured projects whose link is only an APK download', () => {
-    const withApk = [projects[0], p({ title: 'Apk', isFeatured: true, liveUrl: 'https://github.com/u/r/releases/tag/v1' }), projects[2]];
-    expect(pickProof(withApk, []).map((x) => x.title)).toEqual(['A', 'C']);
+  it('labels an APK download as a download, not a live demo', () => {
+    const withApk = [projects[0], p({ title: 'Apk', isFeatured: true, liveUrl: 'https://github.com/u/r/releases/tag/v1', shortDescription: 'apk app' })];
+    expect(pickProof(withApk, [])[1]).toEqual({ title: 'Apk', text: 'apk app', label: 'Download APK', href: 'https://github.com/u/r/releases/tag/v1', kind: 'apk' });
   });
-  it('falls back to other projects with a live demo when too few are featured', () => {
-    const oneFeatured = [projects[0], p({ title: 'Apk', liveUrl: 'https://github.com/u/r/releases/tag/v1' }), p({ title: 'E', liveUrl: 'https://e.app', shortDescription: 'e app' }), p({ title: 'F', liveUrl: 'https://f.app' })];
-    expect(pickProof(oneFeatured, os).map((x) => x.title)).toEqual(['A', 'Anki', 'E']);
+  it('falls back to the next projects in order when too few are featured', () => {
+    const oneFeatured = [projects[0], p({ title: 'NoLink' }), p({ title: 'Apk', liveUrl: 'https://github.com/u/r/releases/tag/v1' }), p({ title: 'E', liveUrl: 'https://e.app' })];
+    expect(pickProof(oneFeatured, os).map((x) => x.title)).toEqual(['A', 'Anki', 'Apk']);
   });
   it('returns what exists', () => {
     expect(pickProof(null, null)).toEqual([]);
