@@ -101,7 +101,7 @@ export function HeroSection() {
               <div className="flex-1">
                 <p className="line-clamp-2 text-[0.94rem] text-text-secondary">{item.text}</p>
               </div>
-              <LinkList accent className="mt-2" links={[{ label: item.label, href: item.href }]} />
+              <LinkList accent className="mt-2" links={[{ label: item.label, href: item.href, kind: item.kind }]} />
             </div>
           ))}
         </div>

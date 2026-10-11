@@ -26,7 +26,7 @@ function Contribution({ item, onOpen }) {
             {item.status}
           </span>
         )}
-        {link && <LinkList links={[{ label: pullRequestRef(item.pullRequestUrl) || item.projectName, href: link }]} />}
+        {link && <LinkList links={[{ label: pullRequestRef(item.pullRequestUrl) || item.projectName, href: link, kind: item.pullRequestUrl ? 'pr' : 'github' }]} />}
         {when && <span className="text-sm tabular-nums text-text-secondary">{when}</span>}
       </div>
       <h3>
@@ -42,10 +42,10 @@ function Contribution({ item, onOpen }) {
 
 function hackathonLinks(hackathon) {
   return [
-    { label: 'Live demo', href: hackathon.liveUrl },
-    { label: 'Source code', href: hackathon.githubUrl },
-    { label: 'Watch demo', href: hackathon.youtubeUrl },
-    { label: 'View certificate', href: hackathon.certificateUrl },
+    { label: 'Live demo', href: hackathon.liveUrl, kind: 'live' },
+    { label: 'Source code', href: hackathon.githubUrl, kind: 'code' },
+    { label: 'Watch demo', href: hackathon.youtubeUrl, kind: 'demo' },
+    { label: 'View certificate', href: hackathon.certificateUrl, kind: 'certificate' },
   ].filter((link) => link.href);
 }
 

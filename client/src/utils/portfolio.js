@@ -30,17 +30,18 @@ export function partitionProjects(projects, kind) {
   };
 }
 
-function liveLabel(url) {
-  if (url.includes('play.google.com')) return 'Play Store';
-  if (url.includes('/releases/')) return 'Download APK';
-  return 'Live demo';
+// `kind` tells the link list which icon to draw in front of the label
+function liveLink(url) {
+  if (url.includes('play.google.com')) return { label: 'Play Store', href: url, kind: 'store' };
+  if (url.includes('/releases/')) return { label: 'Download APK', href: url, kind: 'apk' };
+  return { label: 'Live demo', href: url, kind: 'live' };
 }
 
 export function projectLinks(project) {
   const links = [];
-  if (project.liveUrl) links.push({ label: liveLabel(project.liveUrl), href: project.liveUrl });
-  if (project.githubUrl) links.push({ label: 'Source code', href: project.githubUrl });
-  if (project.youtubeUrl) links.push({ label: 'Watch demo', href: project.youtubeUrl });
+  if (project.liveUrl) links.push(liveLink(project.liveUrl));
+  if (project.githubUrl) links.push({ label: 'Source code', href: project.githubUrl, kind: 'code' });
+  if (project.youtubeUrl) links.push({ label: 'Watch demo', href: project.youtubeUrl, kind: 'demo' });
   return links;
 }
 
@@ -59,11 +60,13 @@ export function pickGlance(experience) {
 }
 
 function projectProof(project) {
+  const onPlayStore = project.liveUrl.includes('play.google.com');
   return {
     title: project.title,
     text: project.shortDescription || project.description || '',
-    label: project.liveUrl.includes('play.google.com') ? 'On the Play Store' : 'Live demo',
+    label: onPlayStore ? 'On the Play Store' : 'Live demo',
     href: project.liveUrl,
+    kind: onPlayStore ? 'store' : 'live',
   };
 }
 
@@ -81,6 +84,7 @@ export function pickProof(projects, openSource) {
       text: contribution.title,
       label: number ? `Pull request ${number}` : 'Pull request',
       href: contribution.pullRequestUrl,
+      kind: 'pr',
     });
   }
   if (live[1]) proof.push(projectProof(live[1]));

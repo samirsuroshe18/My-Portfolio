@@ -22,7 +22,7 @@ function ExperienceRow({ experience }) {
         </ul>
       )}
       <TechTags items={experience.technologies} />
-      {experience.certificateUrl && <LinkList links={[{ label: 'View certificate', href: experience.certificateUrl }]} />}
+      {experience.certificateUrl && <LinkList links={[{ label: 'View certificate', href: experience.certificateUrl, kind: 'certificate' }]} />}
     </Row>
   );
 }

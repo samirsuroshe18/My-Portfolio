@@ -8,7 +8,7 @@ export function GitHubActivityGraph({ username, chartUrl, profileUrl }) {
     <div id="github" className="flex scroll-mt-24 flex-col gap-3">
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
         <h3 className="text-[1.14rem] font-semibold text-text-primary">GitHub activity, last 12 months</h3>
-        <LinkList links={[{ label: 'Open GitHub profile', href: profileUrl }]} />
+        <LinkList links={[{ label: 'Open GitHub profile', href: profileUrl, kind: 'github' }]} />
       </div>
 
       {errored ? (

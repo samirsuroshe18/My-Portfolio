@@ -35,14 +35,15 @@ describe('partitionProjects', () => {
 
 describe('projectLinks', () => {
   it('labels a Play Store link', () => {
-    expect(projectLinks({ liveUrl: 'https://play.google.com/store/apps/details?id=x' })).toEqual([{ label: 'Play Store', href: 'https://play.google.com/store/apps/details?id=x' }]);
+    expect(projectLinks({ liveUrl: 'https://play.google.com/store/apps/details?id=x' })).toEqual([{ label: 'Play Store', href: 'https://play.google.com/store/apps/details?id=x', kind: 'store' }]);
   });
   it('labels a GitHub release as an APK download', () => {
-    expect(projectLinks({ liveUrl: 'https://github.com/u/r/releases/tag/v1' })[0].label).toBe('Download APK');
+    expect(projectLinks({ liveUrl: 'https://github.com/u/r/releases/tag/v1' })[0]).toMatchObject({ label: 'Download APK', kind: 'apk' });
   });
   it('orders live, code, demo and skips empty strings', () => {
     expect(projectLinks({ liveUrl: 'https://a.app', githubUrl: 'https://github.com/u/r', youtubeUrl: '' }).map((l) => l.label)).toEqual(['Live demo', 'Source code']);
     expect(projectLinks({ youtubeUrl: 'https://youtu.be/x' }).map((l) => l.label)).toEqual(['Watch demo']);
+    expect(projectLinks({ liveUrl: 'https://a.app', githubUrl: 'https://github.com/u/r', youtubeUrl: 'https://youtu.be/x' }).map((l) => l.kind)).toEqual(['live', 'code', 'demo']);
     expect(projectLinks({})).toEqual([]);
   });
 });
@@ -82,9 +83,9 @@ describe('pickProof', () => {
   const os = [{ projectName: 'Anki', title: 'Fix', pullRequestUrl: 'https://github.com/o/r/pull/1' }];
   it('returns featured live project, contribution, next featured live project', () => {
     expect(pickProof(projects, os)).toEqual([
-      { title: 'A', text: 'a app', label: 'On the Play Store', href: 'https://play.google.com/x' },
-      { title: 'Anki', text: 'Fix', label: 'Pull request 1', href: 'https://github.com/o/r/pull/1' },
-      { title: 'C', text: 'c app', label: 'Live demo', href: 'https://c.app' },
+      { title: 'A', text: 'a app', label: 'On the Play Store', href: 'https://play.google.com/x', kind: 'store' },
+      { title: 'Anki', text: 'Fix', label: 'Pull request 1', href: 'https://github.com/o/r/pull/1', kind: 'pr' },
+      { title: 'C', text: 'c app', label: 'Live demo', href: 'https://c.app', kind: 'live' },
     ]);
   });
   it('returns what exists', () => {

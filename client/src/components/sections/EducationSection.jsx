@@ -27,7 +27,7 @@ export function EducationSection() {
                 subtitle={[education.school, education.grade && `Grade ${education.grade}`].filter(Boolean).join('. ')}
               />
               {education.description && <p className="max-w-[62ch] text-text-secondary">{education.description}</p>}
-              {education.certificateUrl && <LinkList links={[{ label: 'View certificate', href: education.certificateUrl }]} />}
+              {education.certificateUrl && <LinkList links={[{ label: 'View certificate', href: education.certificateUrl, kind: 'certificate' }]} />}
             </Row>
           ))}
         </div>
