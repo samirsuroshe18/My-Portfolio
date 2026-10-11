@@ -17,11 +17,11 @@ const DATA = [
     title: 'Frontend Development',
     skills: [
       { name: 'React.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-      { name: 'Redux', icon: 'https://d33wubrfki0l68.cloudfront.net/0834d0215db51e91525a25acf97433051f280f2f/c30f5/img/redux.svg' },
-      { name: 'HTML', icon: 'https://www.w3.org/html/logo/badge/html5-badge-h-solo.png' },
+      { name: 'Redux', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791705428/my-portfolio/redux_q0yvdy.svg' },
+      { name: 'HTML', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791705424/my-portfolio/html5-badge-h-solo_lloyfe.png' },
       { name: 'CSS', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786469810/my-portfolio/css-logo_qfwfcj.png' },
       { name: 'Tailwind', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466712/my-portfolio/tailwind_w0wrr9.png' },
-      { name: 'Bootstrap', icon: 'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png' },
+      { name: 'Bootstrap', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791705423/my-portfolio/bootstrap-logo-shadow_uef7on.png' },
     ],
   },
   {
@@ -38,16 +38,16 @@ const DATA = [
     skills: [
       { name: 'Flutter', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466675/my-portfolio/flutter_ynsmev.png' },
       { name: 'Jetpack Compose', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466686/my-portfolio/jetpackcompose_w65ahm.png' },
-      { name: 'XML', icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBMw6_RdwKQ9bDFfnKDX1iwMl4bVJEvd9PP53XuIw&s' },
-      { name: 'Android Studio', icon: 'https://developer.android.com/static/studio/images/new-studio-logo-1_1920.png' },
+      { name: 'XML', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791705426/my-portfolio/images_ytehju.png' },
+      { name: 'Android Studio', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791705427/my-portfolio/new-studio-logo-1_1920_jsetf5.png' },
     ],
   },
   {
     title: 'Development & Deployment Tools',
     skills: [
-      { name: 'Git', icon: 'https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg' },
+      { name: 'Git', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791705424/my-portfolio/git-scm-icon_fg0rin.svg' },
       { name: 'GitHub', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466679/my-portfolio/github_z7jpak.png' },
-      { name: 'Postman', icon: 'https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg' },
+      { name: 'Postman', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791705425/my-portfolio/getpostman-icon_xrkvba.svg' },
       { name: 'VS Code', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786469811/my-portfolio/vs-code_fhcrie.jpg' },
     ],
   },
