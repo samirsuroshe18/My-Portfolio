@@ -41,7 +41,7 @@ export function ProjectsSection() {
       {!loading && !error && counts.all === 0 && <EmptyState title="No projects yet" message="Projects will appear here once they are added." />}
 
       {featured.length > 0 && (
-        <div className="flex flex-col gap-14 sm:gap-[72px]">
+        <div className="flex flex-col gap-12 sm:gap-14">
           {featured.map((project) => (
             <FeaturedProject key={project._id} project={project} />
           ))}

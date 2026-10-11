@@ -27,7 +27,7 @@ export function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto flex max-w-[1120px] flex-col gap-24 px-[clamp(16px,5vw,48px)] pb-32 pt-10 sm:pt-[72px] lg:gap-32">
+      <main className="mx-auto flex max-w-[1120px] flex-col gap-14 px-[clamp(16px,5vw,48px)] pb-20 pt-8 sm:gap-16 sm:pt-14 lg:gap-20">
         <HeroSection />
         <ProjectsSection />
         <ExperienceSection />

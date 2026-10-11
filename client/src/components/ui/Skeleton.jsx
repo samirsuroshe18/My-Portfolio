@@ -26,7 +26,7 @@ export function HeroSkeleton() {
 
 export function FeaturedSkeleton({ count = 2 }) {
   return (
-    <div aria-hidden="true" className="flex flex-col gap-14 sm:gap-[72px]">
+    <div aria-hidden="true" className="flex flex-col gap-12 sm:gap-14">
       {Array.from({ length: count }, (_, index) => (
         <div key={index} className="grid gap-x-14 gap-y-6 sm:grid-cols-[6fr_5fr] sm:items-center">
           <Skeleton className="aspect-[16/10] rounded-[14px]" />
