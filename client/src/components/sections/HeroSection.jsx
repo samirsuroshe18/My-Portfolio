@@ -70,7 +70,11 @@ export function HeroSection() {
           </Button>
         </div>
 
-        <SocialLinks links={socialLinks} />
+        {/* on phones the links are tightened to stay on one line, and scroll sideways if there are too many to fit */}
+        <SocialLinks
+          links={socialLinks}
+          className="max-sm:flex-nowrap max-sm:justify-between max-sm:gap-x-2 max-sm:overflow-x-auto max-sm:[scrollbar-width:none] max-sm:[&::-webkit-scrollbar]:hidden max-sm:[&_a]:gap-1.5 max-sm:[&_a]:whitespace-nowrap max-sm:[&_a]:text-[0.82rem] max-sm:[&_svg]:text-[0.92rem]"
+        />
       </div>
 
       {(profile.avatarUrl || hasGlance) && (
