@@ -25,6 +25,7 @@ export function ProjectsSection() {
   const compact = visible.filter((project) => !project.isFeatured);
   // on a phone, compact projects past the limit wait behind "Show all"
   const isHeldBack = (project) => !showAll && compact.indexOf(project) >= MOBILE_LIMIT;
+  const heldBack = Math.max(0, compact.length - MOBILE_LIMIT);
   const tabs = [
     { value: 'all', label: `All ${counts.all}` },
     { value: 'mobile', label: `Mobile ${counts.mobile}` },
@@ -65,7 +66,7 @@ export function ProjectsSection() {
       {compact.length > MOBILE_LIMIT && !showAll && (
         <div className="sm:hidden">
           <Button variant="outline" onClick={() => setShowAll(true)}>
-            Show all {visible.length} projects
+            Show {heldBack} more {heldBack === 1 ? 'project' : 'projects'}
           </Button>
         </div>
       )}
