@@ -13,8 +13,16 @@ export function FeaturedProject({ project }) {
   const { summary, fullDescription, highlights, hasMore } = projectExtras(project);
   const meta = [kindLabel(project.platform), formatDateRange(project.startDate, project.endDate, false)].filter(Boolean).join(', ');
 
+  // Closed, the image sits level with the middle of the text. Opened, the text can be several
+  // screens tall, so the image starts at the top and follows the reader down.
   return (
-    <article className={cn('grid gap-x-14 gap-y-6 sm:items-center sm:[&:nth-child(even)>img]:order-2', project.image && 'sm:grid-cols-[6fr_5fr]')}>
+    <article
+      className={cn(
+        'grid gap-x-14 gap-y-6 sm:[&:nth-child(even)>img]:order-2',
+        open ? 'sm:items-start sm:[&>img]:sticky sm:[&>img]:top-24' : 'sm:items-center',
+        project.image && 'sm:grid-cols-[6fr_5fr]'
+      )}
+    >
       {project.image && (
         <img
           src={optimizeImage(project.image, 1200)}
