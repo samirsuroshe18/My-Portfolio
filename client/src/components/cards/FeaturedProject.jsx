@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 import { LinkList } from '../ui/LinkList.jsx';
 import { TechTags } from '../ui/TechTags.jsx';
 import { MorePanel, MoreToggle } from './ProjectMore.jsx';
+import { cn } from '../../utils/classNames.js';
 import { formatDateRange } from '../../utils/formatDate.js';
 import { optimizeImage } from '../../utils/optimizeImage.js';
 import { kindLabel, projectExtras, projectLinks } from '../../utils/portfolio.js';
@@ -26,7 +27,8 @@ export function FeaturedProject({ project }) {
       <div className="flex min-w-0 flex-col gap-3">
         <p className="text-sm tabular-nums text-text-secondary">{meta}</p>
         <h3 className="font-serif text-[clamp(1.8rem,3vw,2.3rem)] leading-[1.08] text-text-primary">{project.title}</h3>
-        <p className="line-clamp-4 max-w-[62ch] text-text-secondary">{summary}</p>
+        {/* shortened only while "Details" is there to open it in full */}
+        <p className={cn('max-w-[62ch] text-text-secondary', hasMore && !open && 'line-clamp-4')}>{summary}</p>
         <TechTags items={project.techStack} limit={open ? undefined : 7} />
         {open && <MorePanel id={panelId} highlights={highlights} fullDescription={fullDescription} />}
         <div className="flex flex-wrap items-center gap-x-5 gap-y-1">

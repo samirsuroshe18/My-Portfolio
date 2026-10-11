@@ -33,7 +33,7 @@ export function ProjectRow({ project, className = '' }) {
             {hasMore && <MoreToggle open={open} onToggle={() => setOpen((value) => !value)} panelId={panelId} />}
           </div>
         </div>
-        <p className="line-clamp-3 text-[0.96rem] text-text-secondary">{summary}</p>
+        <p className={cn('text-[0.96rem] text-text-secondary', hasMore && !open && 'line-clamp-3')}>{summary}</p>
         <TechTags items={project.techStack} limit={open ? undefined : 5} />
         {open && <MorePanel id={panelId} highlights={highlights} fullDescription={fullDescription} />}
         <LinkList links={projectLinks(project)} />

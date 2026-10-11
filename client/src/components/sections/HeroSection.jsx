@@ -101,9 +101,7 @@ export function HeroSection() {
               className="flex flex-col gap-0.5 border-b border-border py-[18px] sm:border-b-0 sm:border-l sm:py-0 sm:pl-7 sm:pr-7 sm:pt-[22px] sm:first:border-l-0 sm:first:pl-0"
             >
               <strong className="font-semibold text-text-primary">{item.title}</strong>
-              <div className="flex-1">
-                <p className="line-clamp-2 text-[0.94rem] text-text-secondary">{item.text}</p>
-              </div>
+              <p className="flex-1 text-[0.94rem] text-text-secondary">{item.text}</p>
               <LinkList accent className="mt-2" links={[{ label: item.label, href: item.href, kind: item.kind }]} />
             </div>
           ))}

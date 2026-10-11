@@ -31,7 +31,7 @@ function PostRow({ blog }) {
               {blog.title}
             </a>
           </h3>
-          {blog.description && <p className="line-clamp-4 max-w-[62ch] text-text-secondary">{blog.description}</p>}
+          {blog.description && <p className="max-w-[62ch] text-text-secondary">{blog.description}</p>}
           {blog.tags?.length > 0 && <p className="text-[0.93rem] text-text-secondary">{blog.tags.slice(0, 3).join(', ')}</p>}
         </div>
       </div>

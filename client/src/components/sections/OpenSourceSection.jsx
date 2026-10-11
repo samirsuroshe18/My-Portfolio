@@ -70,7 +70,7 @@ function HackathonRow({ hackathon, onOpen }) {
         </h3>
         {facts && <p className="text-[0.93rem] text-text-secondary">{facts}</p>}
       </div>
-      {hackathon.description && <p className="line-clamp-4 max-w-[62ch] text-text-secondary">{hackathon.description}</p>}
+      {hackathon.description && <p className="max-w-[62ch] text-text-secondary">{hackathon.description}</p>}
       {credits && <p className="text-[0.93rem] text-text-secondary">{credits}</p>}
       <TechTags items={hackathon.tags} limit={7} />
       <LinkList links={hackathonLinks(hackathon)} />

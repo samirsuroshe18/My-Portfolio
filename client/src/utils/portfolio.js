@@ -63,7 +63,8 @@ function projectProof(project) {
   const onPlayStore = project.liveUrl.includes('play.google.com');
   return {
     title: project.title,
-    text: project.shortDescription || project.description || '',
+    // only the short description: this line is shown in full, so the long one would not fit
+    text: project.shortDescription || '',
     label: onPlayStore ? 'On the Play Store' : 'Live demo',
     href: project.liveUrl,
     kind: onPlayStore ? 'store' : 'live',
