@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras, calendarWeeks } from './portfolio.js';
+import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras, calendarWeeks, pickActiveSection } from './portfolio.js';
 
 const p = (over) => ({ _id: over.title, title: 't', platform: 'web', isFeatured: false, ...over });
 
@@ -142,5 +142,23 @@ describe('calendarWeeks', () => {
   });
   it('handles no data', () => {
     expect(calendarWeeks(null)).toEqual({ weeks: [], months: [] });
+  });
+});
+
+describe('pickActiveSection', () => {
+  const sections = [{ id: 'about', top: -900 }, { id: 'projects', top: -100 }, { id: 'skills', top: 500 }];
+  it('picks the lowest section whose top has passed the reading line', () => {
+    expect(pickActiveSection(sections, 300, false)).toBe('projects');
+    expect(pickActiveSection(sections, 600, false)).toBe('skills');
+  });
+  it('does not depend on the order the sections are listed in', () => {
+    expect(pickActiveSection([...sections].reverse(), 300, false)).toBe('projects');
+  });
+  it('picks nothing when no section has reached the line', () => {
+    expect(pickActiveSection([{ id: 'about', top: 400 }], 300, false)).toBe('');
+    expect(pickActiveSection([], 300, true)).toBe('');
+  });
+  it('picks the last section at the bottom of the page', () => {
+    expect(pickActiveSection(sections, 300, true)).toBe('skills');
   });
 });

@@ -48,7 +48,7 @@ function ProjectDetailContent({ item }) {
   return (
     <article>
       {item.image && (
-        <img src={optimizeImage(item.image, 1600)} alt={item.title} className="mb-8 max-h-96 w-full rounded-[14px] border border-border bg-skeleton object-cover" />
+        <img src={optimizeImage(item.image, 1600)} alt={item.title} decoding="async" className="mb-8 max-h-96 w-full rounded-[14px] border border-border bg-skeleton object-cover" />
       )}
       <h1 className="font-serif text-[clamp(2.2rem,5vw,3.2rem)] leading-[1.05] tracking-[-0.01em] text-text-primary">{item.title}</h1>
       {item.meta && <p className="mt-2 text-sm tabular-nums text-text-secondary">{item.meta}</p>}

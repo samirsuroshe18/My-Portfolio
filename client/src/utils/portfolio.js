@@ -138,3 +138,14 @@ export function calendarWeeks(days) {
 
   return { weeks, months: months.map(({ label, column }) => ({ label, column })) };
 }
+
+/**
+ * Which section the reader is in: the lowest one whose top has passed the reading line.
+ * At the very bottom of the page the last section wins, since a short final section never reaches the line.
+ */
+export function pickActiveSection(sections, line, atBottom) {
+  if (sections.length === 0) return '';
+  const byPosition = [...sections].sort((a, b) => a.top - b.top);
+  if (atBottom) return byPosition.at(-1).id;
+  return byPosition.filter((section) => section.top <= line).at(-1)?.id || '';
+}

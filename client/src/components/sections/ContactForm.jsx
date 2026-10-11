@@ -41,10 +41,10 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex min-w-0 flex-col gap-4">
-      <Input label="Your name" autoComplete="name" className="bg-card" value={values.name} onChange={(e) => setField('name', e.target.value)} error={errors.name} required />
-      <Input label="Your email" type="email" autoComplete="email" className="bg-card" value={values.email} onChange={(e) => setField('email', e.target.value)} error={errors.email} required />
-      <Input label="Subject" className="bg-card" value={values.subject} onChange={(e) => setField('subject', e.target.value)} />
-      <Textarea label="Message" rows={5} className="bg-card" value={values.message} onChange={(e) => setField('message', e.target.value)} error={errors.message} required />
+      <Input label="Your name" autoComplete="name" className="bg-card!" value={values.name} onChange={(e) => setField('name', e.target.value)} error={errors.name} required />
+      <Input label="Your email" type="email" autoComplete="email" className="bg-card!" value={values.email} onChange={(e) => setField('email', e.target.value)} error={errors.email} required />
+      <Input label="Subject" className="bg-card!" value={values.subject} onChange={(e) => setField('subject', e.target.value)} />
+      <Textarea label="Message" rows={5} className="bg-card!" value={values.message} onChange={(e) => setField('message', e.target.value)} error={errors.message} required />
 
       <Button type="submit" size="lg" className="self-start" loading={status === 'submitting'} disabled={status === 'submitting'}>
         Send message

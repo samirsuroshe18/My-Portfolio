@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 import { LinkList } from '../ui/LinkList.jsx';
 import { TechTags } from '../ui/TechTags.jsx';
 import { ExpandableSummary, MorePanel } from './ProjectMore.jsx';
+import { cn } from '../../utils/classNames.js';
 import { formatDateRange } from '../../utils/formatDate.js';
 import { optimizeImage } from '../../utils/optimizeImage.js';
 import { kindLabel, projectExtras, projectLinks } from '../../utils/portfolio.js';
@@ -13,7 +14,7 @@ export function FeaturedProject({ project }) {
   const meta = [kindLabel(project.platform), formatDateRange(project.startDate, project.endDate, false)].filter(Boolean).join(', ');
 
   return (
-    <article className="grid gap-x-14 gap-y-6 sm:grid-cols-[6fr_5fr] sm:items-center sm:[&:nth-child(even)>img]:order-2">
+    <article className={cn('grid gap-x-14 gap-y-6 sm:items-center sm:[&:nth-child(even)>img]:order-2', project.image && 'sm:grid-cols-[6fr_5fr]')}>
       {project.image && (
         <img
           src={optimizeImage(project.image, 1200)}

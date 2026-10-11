@@ -121,7 +121,7 @@ export function OpenSourceSection() {
         contributions.map((item) => <Contribution key={item._id} item={item} onOpen={() => setActive(mapOpenSourceToModal(item))} />)}
 
       {!loading && events.length > 0 && (
-        <div id="hackathons" className="scroll-mt-24 border-b border-border">
+        <div id="hackathons" className="scroll-mt-28 sm:scroll-mt-24 border-b border-border">
           {events.map((hackathon) => (
             <HackathonRow key={hackathon._id} hackathon={hackathon} onOpen={() => setActive(mapHackathonToModal(hackathon))} />
           ))}

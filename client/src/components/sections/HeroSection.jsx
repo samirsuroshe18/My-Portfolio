@@ -49,7 +49,7 @@ export function HeroSection() {
   const socialLinks = (data.socialLinks || []).filter((link) => link.platform !== 'mail');
 
   return (
-    <section id="about" className="grid scroll-mt-24 gap-x-[72px] gap-y-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-end">
+    <section id="about" className="grid scroll-mt-28 sm:scroll-mt-24 gap-x-[72px] gap-y-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-end">
       <div className="flex min-w-0 flex-col gap-6">
         <h1 className="font-serif text-[clamp(3.2rem,8.4vw,6.4rem)] leading-[0.95] tracking-[-0.02em] text-text-primary">{profile.name}</h1>
         {roleLine && <p className="text-[clamp(1.2rem,2.2vw,1.5rem)] font-medium leading-snug text-text-primary">{roleLine}</p>}
