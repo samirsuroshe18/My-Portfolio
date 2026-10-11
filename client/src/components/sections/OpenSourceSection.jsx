@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Section } from '../layout/Section.jsx';
 import { Row } from '../ui/Row.jsx';
 import { LinkList } from '../ui/LinkList.jsx';
+import { TechTags } from '../ui/TechTags.jsx';
 import { ProjectDetailModal } from '../modals/ProjectDetailModal.jsx';
 import { RowsSkeleton } from '../ui/Skeleton.jsx';
 import { ErrorState } from '../ui/ErrorState.jsx';
@@ -34,7 +35,7 @@ function Contribution({ item, onOpen }) {
         </button>
       </h3>
       {item.description && <p className="max-w-[62ch] text-text-secondary">{item.description}</p>}
-      {item.technologies?.length > 0 && <p className="text-[0.93rem] text-text-secondary">{item.technologies.join(', ')}</p>}
+      <TechTags items={item.technologies} />
     </article>
   );
 }
@@ -71,6 +72,7 @@ function HackathonRow({ hackathon, onOpen }) {
       </div>
       {hackathon.description && <p className="line-clamp-4 max-w-[62ch] text-text-secondary">{hackathon.description}</p>}
       {credits && <p className="text-[0.93rem] text-text-secondary">{credits}</p>}
+      <TechTags items={hackathon.tags} limit={7} />
       <LinkList links={hackathonLinks(hackathon)} />
     </Row>
   );

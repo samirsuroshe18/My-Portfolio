@@ -1,6 +1,7 @@
 import { Section } from '../layout/Section.jsx';
 import { Row } from '../ui/Row.jsx';
 import { LinkList } from '../ui/LinkList.jsx';
+import { TechTags } from '../ui/TechTags.jsx';
 import { RowsSkeleton } from '../ui/Skeleton.jsx';
 import { ErrorState } from '../ui/ErrorState.jsx';
 import { EmptyState } from '../ui/EmptyState.jsx';
@@ -32,7 +33,7 @@ function ExperienceRow({ experience }) {
           ))}
         </ul>
       )}
-      {experience.technologies?.length > 0 && <p className="text-[0.93rem] text-text-secondary">{experience.technologies.join(', ')}</p>}
+      <TechTags items={experience.technologies} />
       {experience.certificateUrl && <LinkList links={[{ label: 'View certificate', href: experience.certificateUrl }]} />}
     </Row>
   );

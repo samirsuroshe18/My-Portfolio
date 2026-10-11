@@ -1,9 +1,15 @@
+import { useId, useState } from 'react';
 import { LinkList } from '../ui/LinkList.jsx';
+import { TechTags } from '../ui/TechTags.jsx';
+import { MorePanel, MoreToggle } from './ProjectMore.jsx';
 import { formatDateRange } from '../../utils/formatDate.js';
 import { optimizeImage } from '../../utils/optimizeImage.js';
-import { kindLabel, projectLinks } from '../../utils/portfolio.js';
+import { kindLabel, projectExtras, projectLinks } from '../../utils/portfolio.js';
 
-export function FeaturedProject({ project, onOpen }) {
+export function FeaturedProject({ project }) {
+  const [open, setOpen] = useState(false);
+  const panelId = useId();
+  const { summary, fullDescription, highlights, hasMore } = projectExtras(project);
   const meta = [kindLabel(project.platform), formatDateRange(project.startDate, project.endDate, false)].filter(Boolean).join(', ');
 
   return (
@@ -19,24 +25,14 @@ export function FeaturedProject({ project, onOpen }) {
       )}
       <div className="flex min-w-0 flex-col gap-3">
         <p className="text-sm tabular-nums text-text-secondary">{meta}</p>
-        <h3>
-          <button
-            onClick={onOpen}
-            className="cursor-pointer text-left font-serif text-[clamp(1.8rem,3vw,2.3rem)] leading-[1.08] text-text-primary transition-colors hover:text-primary"
-          >
-            {project.title}
-          </button>
-        </h3>
-        <p className="line-clamp-4 max-w-[62ch] text-text-secondary">{project.shortDescription || project.description}</p>
-        {project.highlights?.length > 0 && (
-          <ul className="flex max-w-[60ch] list-disc flex-col gap-1 pl-[18px] text-[0.95rem] text-text-secondary">
-            {project.highlights.map((highlight) => (
-              <li key={highlight}>{highlight}</li>
-            ))}
-          </ul>
-        )}
-        {project.techStack?.length > 0 && <p className="text-[0.93rem] text-text-secondary">{project.techStack.slice(0, 7).join(', ')}</p>}
-        <LinkList links={projectLinks(project)} />
+        <h3 className="font-serif text-[clamp(1.8rem,3vw,2.3rem)] leading-[1.08] text-text-primary">{project.title}</h3>
+        <p className="line-clamp-4 max-w-[62ch] text-text-secondary">{summary}</p>
+        <TechTags items={project.techStack} limit={open ? undefined : 7} />
+        {open && <MorePanel id={panelId} highlights={highlights} fullDescription={fullDescription} />}
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {hasMore && <MoreToggle open={open} onToggle={() => setOpen((value) => !value)} panelId={panelId} />}
+          <LinkList links={projectLinks(project)} />
+        </div>
       </div>
     </article>
   );

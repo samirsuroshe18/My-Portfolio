@@ -3,13 +3,11 @@ import { Section } from '../layout/Section.jsx';
 import { FeaturedProject } from '../cards/FeaturedProject.jsx';
 import { ProjectRow } from '../cards/ProjectRow.jsx';
 import { ProjectFilterTabs } from '../cards/ProjectFilterTabs.jsx';
-import { ProjectDetailModal } from '../modals/ProjectDetailModal.jsx';
 import { Button } from '../ui/Button.jsx';
 import { FeaturedSkeleton } from '../ui/Skeleton.jsx';
 import { ErrorState } from '../ui/ErrorState.jsx';
 import { EmptyState } from '../ui/EmptyState.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
-import { mapProjectToModal } from '../../utils/mapToModalItem.js';
 import { partitionProjects } from '../../utils/portfolio.js';
 
 // How many of the compact projects a phone shows before the rest are asked for
@@ -18,7 +16,6 @@ const MOBILE_LIMIT = 3;
 export function ProjectsSection() {
   const { data, loading, error, refetch } = usePortfolioData('projects');
   const [filter, setFilter] = useState('all');
-  const [activeProject, setActiveProject] = useState(null);
   const [showAll, setShowAll] = useState(false);
 
   const { featured, rest, counts } = partitionProjects(data, filter);
@@ -46,7 +43,7 @@ export function ProjectsSection() {
       {featured.length > 0 && (
         <div className="flex flex-col gap-14 sm:gap-[72px]">
           {featured.map((project) => (
-            <FeaturedProject key={project._id} project={project} onOpen={() => setActiveProject(project)} />
+            <FeaturedProject key={project._id} project={project} />
           ))}
         </div>
       )}
@@ -57,7 +54,6 @@ export function ProjectsSection() {
             <ProjectRow
               key={project._id}
               project={project}
-              onOpen={() => setActiveProject(project)}
               className={index >= MOBILE_LIMIT && !showAll ? 'max-sm:hidden' : ''}
             />
           ))}
@@ -71,8 +67,6 @@ export function ProjectsSection() {
           </Button>
         </div>
       )}
-
-      <ProjectDetailModal item={activeProject ? mapProjectToModal(activeProject) : null} onClose={() => setActiveProject(null)} />
     </Section>
   );
 }

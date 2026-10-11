@@ -97,3 +97,11 @@ export function navHref(href) {
 export function currentJobLabel(job) {
   return job.isCurrent ? 'Now' : 'Latest';
 }
+
+/** What a project keeps behind "More details": its highlight points and the full description. */
+export function projectExtras(project) {
+  const summary = project.shortDescription || project.description || '';
+  const fullDescription = project.description && project.description !== summary ? project.description : '';
+  const highlights = project.highlights || [];
+  return { summary, fullDescription, highlights, hasMore: highlights.length > 0 || Boolean(fullDescription) };
+}

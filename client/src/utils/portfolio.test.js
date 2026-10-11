@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel } from './portfolio.js';
+import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras } from './portfolio.js';
 
 const p = (over) => ({ _id: over.title, title: 't', platform: 'web', isFeatured: false, ...over });
 
@@ -110,5 +110,15 @@ describe('currentJobLabel', () => {
     expect(currentJobLabel({ isCurrent: true })).toBe('Now');
     expect(currentJobLabel({ isCurrent: false })).toBe('Latest');
     expect(currentJobLabel({})).toBe('Latest');
+  });
+});
+
+describe('projectExtras', () => {
+  it('keeps highlights and the full description behind the toggle', () => {
+    expect(projectExtras({ shortDescription: 'short', description: 'long', highlights: ['a'] })).toEqual({ summary: 'short', fullDescription: 'long', highlights: ['a'], hasMore: true });
+  });
+  it('has nothing more when the description is already the summary', () => {
+    expect(projectExtras({ description: 'only' })).toEqual({ summary: 'only', fullDescription: '', highlights: [], hasMore: false });
+    expect(projectExtras({})).toEqual({ summary: '', fullDescription: '', highlights: [], hasMore: false });
   });
 });
