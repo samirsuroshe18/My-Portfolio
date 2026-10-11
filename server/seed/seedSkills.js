@@ -6,17 +6,17 @@ const DATA = [
     title: 'Programming Languages',
     skills: [
       { name: 'JavaScript', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png' },
-      { name: 'Java', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg' },
+      { name: 'Java', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791707004/my-portfolio/java-original_myafx2.svg' },
       { name: 'Kotlin', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466686/my-portfolio/kotlin_lzvwkx.png' },
       { name: 'Dart', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466675/my-portfolio/dart_x8pdmw.png' },
-      { name: 'Python', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg' },
+      { name: 'Python', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791707004/my-portfolio/python-original_s2fn94.svg' },
       { name: 'PHP', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466699/my-portfolio/php_o6c5ws.png' },
     ],
   },
   {
     title: 'Frontend Development',
     skills: [
-      { name: 'React.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+      { name: 'React.js', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791707005/my-portfolio/react-original_erzetn.svg' },
       { name: 'Redux', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791705428/my-portfolio/redux_q0yvdy.svg' },
       { name: 'HTML', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791705424/my-portfolio/html5-badge-h-solo_lloyfe.png' },
       { name: 'CSS', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786469810/my-portfolio/css-logo_qfwfcj.png' },
@@ -28,8 +28,8 @@ const DATA = [
     title: 'Backend & Database',
     skills: [
       { name: 'Node.js', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466697/my-portfolio/nodejs_z25nwz.png' },
-      { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
-      { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+      { name: 'Express.js', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791707366/my-portfolio/express-original_v0gw5s.svg' },
+      { name: 'MySQL', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791707367/my-portfolio/mysql-original_x1973d.svg' },
       { name: 'MongoDB', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466693/my-portfolio/mongodb_t2tm1m.png' },
     ],
   },
@@ -58,7 +58,7 @@ const DATA = [
       { name: 'Firebase', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466677/my-portfolio/firebase_vv2jso.png' },
       { name: 'Netlify', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791702908/my-portfolio/netlify-original_ollaqj.svg' },
       { name: 'Vercel', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466716/my-portfolio/vercel_b87b3l.png' },
-      { name: 'Render', icon: 'https://cdn.simpleicons.org/render/000000' },
+      { name: 'Render', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791707368/my-portfolio/render_ekbtju.svg' },
     ],
   },
 ];
