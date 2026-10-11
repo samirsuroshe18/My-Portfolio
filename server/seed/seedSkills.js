@@ -28,8 +28,8 @@ const DATA = [
     title: 'Backend & Database',
     skills: [
       { name: 'Node.js', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466697/my-portfolio/nodejs_z25nwz.png' },
-      { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
-      { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+      { name: 'Express.js', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791707366/my-portfolio/express-original_v0gw5s.svg' },
+      { name: 'MySQL', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791707367/my-portfolio/mysql-original_x1973d.svg' },
       { name: 'MongoDB', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466693/my-portfolio/mongodb_t2tm1m.png' },
     ],
   },
