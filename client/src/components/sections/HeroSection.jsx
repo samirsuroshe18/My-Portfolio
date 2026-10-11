@@ -8,6 +8,8 @@ import { formatDateRange } from '../../utils/formatDate.js';
 import { optimizeImage } from '../../utils/optimizeImage.js';
 import { currentJobLabel, pickGlance, pickProof } from '../../utils/portfolio.js';
 
+const heroButton = 'whitespace-nowrap max-sm:px-1.5 max-sm:text-[0.82rem]';
+
 function GlanceRow({ label, title, lines }) {
   return (
     <div className="grid grid-cols-[84px_minmax(0,1fr)] gap-3 border-t border-border py-3 first:border-t-0">
@@ -53,16 +55,17 @@ export function HeroSection() {
         {roleLine && <p className="text-[clamp(1.2rem,2.2vw,1.5rem)] font-medium leading-snug text-text-primary">{roleLine}</p>}
         <p className="max-w-[52ch] text-[1.1rem] text-text-secondary">{profile.shortBio || profile.description}</p>
 
-        <div className="flex flex-wrap gap-3">
+        {/* on phones the buttons share one line as equal columns; from tablet up they size to their text */}
+        <div className="grid auto-cols-fr grid-flow-col gap-2 sm:flex sm:flex-wrap sm:gap-3">
           {profile.resumeUrl && (
-            <Button as="a" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer" size="lg">
+            <Button as="a" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer" size="lg" className={heroButton}>
               Read resume
             </Button>
           )}
-          <Button as="a" href="#projects" variant="outline" size="lg">
+          <Button as="a" href="#projects" variant="outline" size="lg" className={heroButton}>
             See projects
           </Button>
-          <Button as="a" href="#contact" variant="outline" size="lg">
+          <Button as="a" href="#contact" variant="outline" size="lg" className={heroButton}>
             Get in touch
           </Button>
         </div>
