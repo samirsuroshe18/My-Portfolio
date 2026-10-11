@@ -2,6 +2,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Modal } from '../ui/Modal.jsx';
 import { Badge } from '../ui/Badge.jsx';
 import { Button } from '../ui/Button.jsx';
+import { Description } from '../ui/Description.jsx';
 import { optimizeImage } from '../../utils/optimizeImage.js';
 
 /**
@@ -28,7 +29,7 @@ export function ProjectDetailModal({ item, onClose }) {
             </div>
           )}
 
-          <p className="mt-4 whitespace-pre-line text-sm text-text-secondary">{item.description}</p>
+          <Description text={item.description} className="mt-4 text-sm" />
 
           {item.members?.length > 0 && (
             <div className="mt-5">

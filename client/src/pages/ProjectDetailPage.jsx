@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Navbar } from '../components/layout/Navbar.jsx';
 import { Footer } from '../components/layout/Footer.jsx';
 import { Button } from '../components/ui/Button.jsx';
+import { Description } from '../components/ui/Description.jsx';
 import { Skeleton } from '../components/ui/Skeleton.jsx';
 import { ErrorState } from '../components/ui/ErrorState.jsx';
 import { useFetch } from '../hooks/useFetch.js';
@@ -54,7 +55,7 @@ function ProjectDetailContent({ item }) {
       {item.meta && <p className="mt-2 text-sm tabular-nums text-text-secondary">{item.meta}</p>}
       {item.tags?.length > 0 && <p className="mt-1 text-[0.93rem] text-text-secondary">{item.tags.join(', ')}</p>}
 
-      <p className="mt-6 max-w-[62ch] whitespace-pre-line text-text-secondary">{item.description}</p>
+      <Description text={item.description} className="mt-6" />
 
       {item.actions?.length > 0 && (
         <div className="mt-8 flex flex-wrap gap-3">

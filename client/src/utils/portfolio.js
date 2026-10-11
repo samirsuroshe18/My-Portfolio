@@ -149,3 +149,42 @@ export function pickActiveSection(sections, line, atBottom) {
   if (atBottom) return byPosition.at(-1).id;
   return byPosition.filter((section) => section.top <= line).at(-1)?.id || '';
 }
+
+const LEADING_SYMBOLS = /^[\p{Extended_Pictographic}️‍\s]+/u;
+const HEADING_MAX_LENGTH = 40;
+
+/**
+ * Breaks a free-text description into paragraphs, headings and lists so it can be typeset.
+ * A short line ending in a colon starts a list of the lines under it; emoji used as bullets are dropped.
+ */
+export function descriptionBlocks(text) {
+  const blocks = [];
+  let paragraph = [];
+  let list = null;
+
+  const closeParagraph = () => {
+    if (paragraph.length > 0) blocks.push({ type: 'paragraph', text: paragraph.join('\n') });
+    paragraph = [];
+  };
+
+  for (const raw of (text || '').split('\n')) {
+    const line = raw.replace(LEADING_SYMBOLS, '').trim();
+
+    if (!line) {
+      closeParagraph();
+      list = null;
+    } else if (line.endsWith(':') && line.length <= HEADING_MAX_LENGTH) {
+      closeParagraph();
+      blocks.push({ type: 'heading', text: line.slice(0, -1) });
+      list = { type: 'list', items: [] };
+      blocks.push(list);
+    } else if (list) {
+      list.items.push(line);
+    } else {
+      paragraph.push(line);
+    }
+  }
+  closeParagraph();
+
+  return blocks.filter((block) => block.type !== 'list' || block.items.length > 0);
+}

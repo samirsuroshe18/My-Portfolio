@@ -1,3 +1,4 @@
+import { Description } from '../ui/Description.jsx';
 import { cn } from '../../utils/classNames.js';
 
 const LINE_HEIGHT = 1.6;
@@ -38,7 +39,7 @@ export function MorePanel({ id, highlights, fullDescription, onClose }) {
           ))}
         </ul>
       )}
-      {fullDescription && <p className="max-w-[62ch] whitespace-pre-line text-[0.95rem] text-text-secondary">{fullDescription}</p>}
+      <Description text={fullDescription} className="text-[0.95rem]" />
       <button onClick={onClose} aria-expanded="true" aria-controls={id} className={cn('text-[0.95rem]', moreButton)}>
         Read less
       </button>

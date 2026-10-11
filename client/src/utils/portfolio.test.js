@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras, calendarWeeks, pickActiveSection } from './portfolio.js';
+import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras, calendarWeeks, pickActiveSection, descriptionBlocks } from './portfolio.js';
 
 const p = (over) => ({ _id: over.title, title: 't', platform: 'web', isFeatured: false, ...over });
 
@@ -160,5 +160,30 @@ describe('pickActiveSection', () => {
   });
   it('picks the last section at the bottom of the page', () => {
     expect(pickActiveSection(sections, 300, true)).toBe('skills');
+  });
+});
+
+describe('descriptionBlocks', () => {
+  it('turns a labelled run of lines into a heading and a list, without the leading emoji', () => {
+    const text = 'An app for societies.\n\n\u2728 Key Features:\n\uD83D\uDD11 Google Sign-In: quick login\n\uD83D\uDD14 Notifications: instant\n\n\uD83D\uDEE0\uFE0F Tech Stack:\nFrontend: Flutter';
+    expect(descriptionBlocks(text)).toEqual([
+      { type: 'paragraph', text: 'An app for societies.' },
+      { type: 'heading', text: 'Key Features' },
+      { type: 'list', items: ['Google Sign-In: quick login', 'Notifications: instant'] },
+      { type: 'heading', text: 'Tech Stack' },
+      { type: 'list', items: ['Frontend: Flutter'] },
+    ]);
+  });
+  it('keeps plain paragraphs as they are', () => {
+    expect(descriptionBlocks('One.\n\nTwo.')).toEqual([{ type: 'paragraph', text: 'One.' }, { type: 'paragraph', text: 'Two.' }]);
+    expect(descriptionBlocks('Line a\nLine b')).toEqual([{ type: 'paragraph', text: 'Line a\nLine b' }]);
+  });
+  it('does not treat a long sentence ending in a colon as a heading', () => {
+    const long = 'This is a long sentence that happens to end with a colon for some reason:';
+    expect(descriptionBlocks(long)).toEqual([{ type: 'paragraph', text: long }]);
+  });
+  it('handles empty input', () => {
+    expect(descriptionBlocks('')).toEqual([]);
+    expect(descriptionBlocks(undefined)).toEqual([]);
   });
 });
