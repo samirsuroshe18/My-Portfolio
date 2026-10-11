@@ -31,8 +31,9 @@ export function FeaturedProject({ project }) {
         ) : (
           <p className="max-w-[62ch] text-text-secondary">{summary}</p>
         )}
-        <TechTags items={project.techStack} limit={open ? undefined : 7} />
+        {/* the opened text follows the summary directly; the technologies come after all of it */}
         {open && <MorePanel id={panelId} highlights={highlights} fullDescription={fullDescription} onClose={() => setOpen(false)} />}
+        <TechTags items={project.techStack} limit={open ? undefined : 7} />
         <LinkList links={projectLinks(project)} />
       </div>
     </article>

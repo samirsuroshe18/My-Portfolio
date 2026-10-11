@@ -34,8 +34,9 @@ export function ProjectRow({ project, className = '' }) {
         ) : (
           <p className="text-[0.96rem] text-text-secondary">{summary}</p>
         )}
-        <TechTags items={project.techStack} limit={open ? undefined : 5} />
+        {/* the opened text follows the summary directly; the technologies come after all of it */}
         {open && <MorePanel id={panelId} highlights={highlights} fullDescription={fullDescription} onClose={() => setOpen(false)} />}
+        <TechTags items={project.techStack} limit={open ? undefined : 5} />
         <LinkList links={projectLinks(project)} />
       </div>
     </article>
