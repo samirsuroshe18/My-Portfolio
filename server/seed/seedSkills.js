@@ -58,7 +58,7 @@ const DATA = [
       { name: 'Firebase', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466677/my-portfolio/firebase_vv2jso.png' },
       { name: 'Netlify', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791702908/my-portfolio/netlify-original_ollaqj.svg' },
       { name: 'Vercel', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1786466716/my-portfolio/vercel_b87b3l.png' },
-      { name: 'Render', icon: 'https://cdn.simpleicons.org/render/000000' },
+      { name: 'Render', icon: 'https://res.cloudinary.com/daaciwspp/image/upload/v1791707368/my-portfolio/render_ekbtju.svg' },
     ],
   },
 ];
