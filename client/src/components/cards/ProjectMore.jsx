@@ -1,7 +1,8 @@
 import { cn } from '../../utils/classNames.js';
 
 const LINE_HEIGHT = 1.6;
-const moreButton = 'cursor-pointer font-semibold text-text-primary underline decoration-text-secondary decoration-1 underline-offset-4 transition-colors hover:text-primary hover:decoration-primary';
+// same size and weight as the text around it; only the colour sets it apart
+const moreButton = 'cursor-pointer text-primary hover:underline hover:underline-offset-4';
 
 /**
  * A summary cut to a few lines with "Read more" at the end of the last line, the way chat apps do it.
@@ -18,7 +19,7 @@ export function ExpandableSummary({ text, lines, open, onToggle, panelId, classN
       <p className={cn('overflow-hidden', className)} style={{ lineHeight: LINE_HEIGHT, maxHeight: `${lines * LINE_HEIGHT}em` }}>
         <span aria-hidden="true" className="float-right" style={{ height: `calc(100% - ${LINE_HEIGHT}em + 1px)` }} />
         <button onClick={onToggle} aria-expanded="false" aria-controls={panelId} className={cn('float-right clear-both pl-1.5', moreButton)}>
-          <span aria-hidden="true" className="font-normal text-text-secondary no-underline">… </span>
+          <span aria-hidden="true" className="text-text-secondary">… </span>
           Read more
         </button>
         {text}
