@@ -18,7 +18,7 @@ export function Modal({ open, onClose, children, className = '' }) {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 px-3 py-10 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 px-3 py-10"
       onClick={onClose}
     >
       <div
@@ -31,7 +31,7 @@ export function Modal({ open, onClose, children, className = '' }) {
         <button
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-4 top-4 grid h-8 w-8 place-items-center rounded-full text-text-secondary transition hover:bg-bg-light hover:text-primary"
+          className="absolute right-4 top-4 grid h-8 w-8 place-items-center rounded-full text-text-secondary transition hover:bg-card-light hover:text-text-primary"
         >
           ✕
         </button>

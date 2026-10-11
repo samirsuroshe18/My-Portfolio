@@ -2,10 +2,18 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 const ThemeContext = createContext(null);
 
+function readStoredTheme() {
+  try {
+    return localStorage.getItem('theme');
+  } catch {
+    return null;
+  }
+}
+
 function getInitialTheme() {
-  const stored = localStorage.getItem('theme');
+  const stored = readStoredTheme();
   if (stored === 'light' || stored === 'dark') return stored;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 }
 
 export function ThemeProvider({ children }) {
@@ -13,7 +21,11 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
-    localStorage.setItem('theme', theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      // storage can be unavailable (private mode); the theme still applies for this visit
+    }
   }, [theme]);
 
   const value = useMemo(

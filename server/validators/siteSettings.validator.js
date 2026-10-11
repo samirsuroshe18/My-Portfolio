@@ -11,7 +11,7 @@ export const siteSettingsSchema = z.object({
   logoUrl: z.string().trim().max(2000).optional().default(''),
   navItems: z.array(navItemSchema).optional().default([]),
   footerText: z.string().trim().max(200).optional().default(''),
-  accentColor: z.string().trim().regex(/^#([0-9A-Fa-f]{3}){1,2}$/).optional().default('#854CE6'),
+  accentColor: z.string().trim().regex(/^#([0-9A-Fa-f]{3}){1,2}$/).optional().default('#0E6B5E'),
   showGithubButton: z.boolean().optional().default(true),
   metaTitle: z.string().trim().max(100).optional().default(''),
   metaDescription: z.string().trim().max(300).optional().default(''),

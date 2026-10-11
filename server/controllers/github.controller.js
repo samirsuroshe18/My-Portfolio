@@ -2,7 +2,7 @@ import { asyncHandler } from '../middleware/asyncHandler.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 import { GitHubProfile } from '../models/GitHubProfile.js';
 import { SiteSettings } from '../models/SiteSettings.js';
-import { buildContributionChartUrl, isValidGithubUsername } from '../utils/githubClient.js';
+import { buildContributionChartUrl, fetchContributionCalendar, isValidGithubUsername } from '../utils/githubClient.js';
 
 export const getPublicGithub = asyncHandler(async (req, res) => {
   const [profile, settings] = await Promise.all([GitHubProfile.findOne(), SiteSettings.findOne()]);
@@ -14,13 +14,15 @@ export const getPublicGithub = asyncHandler(async (req, res) => {
     return res.json(new ApiResponse(200, 'GitHub activity', { available: false }));
   }
 
-  const accentColor = settings?.accentColor || '#854CE6';
+  const accentColor = settings?.accentColor || '#0E6B5E';
+  const calendar = await fetchContributionCalendar(username);
   res.json(
     new ApiResponse(200, 'GitHub activity', {
       available: true,
       username,
       chartUrl: buildContributionChartUrl(username, accentColor),
       profileUrl: `https://github.com/${username}`,
+      calendar,
     })
   );
 });

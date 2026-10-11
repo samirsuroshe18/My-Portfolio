@@ -2,11 +2,12 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Modal } from '../ui/Modal.jsx';
 import { Badge } from '../ui/Badge.jsx';
 import { Button } from '../ui/Button.jsx';
+import { Description } from '../ui/Description.jsx';
 import { optimizeImage } from '../../utils/optimizeImage.js';
 
 /**
- * Single field-driven detail modal reused by ProjectCard, HackathonCard, and
- * OpenSourceCard. Each caller maps its own record into this shape instead of
+ * Single field-driven detail modal reused by projects, hackathons and
+ * open source contributions. Each caller maps its own record into this shape instead of
  * this component branching on a "category" field.
  */
 export function ProjectDetailModal({ item, onClose }) {
@@ -28,7 +29,7 @@ export function ProjectDetailModal({ item, onClose }) {
             </div>
           )}
 
-          <p className="mt-4 whitespace-pre-line text-sm text-text-secondary">{item.description}</p>
+          <Description text={item.description} className="mt-4 text-sm" />
 
           {item.members?.length > 0 && (
             <div className="mt-5">

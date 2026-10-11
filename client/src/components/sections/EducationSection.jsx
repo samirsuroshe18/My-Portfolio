@@ -1,26 +1,37 @@
-import { SectionHeader } from '../layout/SectionHeader.jsx';
-import { EducationCard } from '../cards/EducationCard.jsx';
-import { TimelineList } from '../ui/TimelineList.jsx';
-import { Spinner } from '../ui/Spinner.jsx';
+import { Section } from '../layout/Section.jsx';
+import { Row } from '../ui/Row.jsx';
+import { EntryHeading } from '../ui/EntryHeading.jsx';
+import { LinkList } from '../ui/LinkList.jsx';
+import { RowsSkeleton } from '../ui/Skeleton.jsx';
 import { ErrorState } from '../ui/ErrorState.jsx';
-import { EmptyState } from '../ui/EmptyState.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
+import { formatDateRange } from '../../utils/formatDate.js';
 
 export function EducationSection() {
   const { data, loading, error, refetch } = usePortfolioData('education');
 
-  return (
-    <section id="education" className="mx-auto max-w-4xl px-5 py-20">
-      <SectionHeader title="Education" description="My academic background." />
+  if (!loading && !error && (!data || data.length === 0)) return null;
 
-      {loading && <Spinner />}
+  return (
+    <Section id="education" title="Education">
+      {loading && <RowsSkeleton rows={1} />}
       {error && <ErrorState message={error} onRetry={refetch} />}
-      {!loading && !error && data?.length === 0 && (
-        <EmptyState icon="🎓" title="No education listed yet" message="Academic history will show up here once added." />
+
+      {data?.length > 0 && (
+        <div className="border-b border-border">
+          {data.map((education) => (
+            <Row key={education._id} meta={formatDateRange(education.startDate, education.endDate, education.isCurrent)}>
+              <EntryHeading
+                logo={education.institutionLogo}
+                title={education.degree}
+                subtitle={[education.school, education.grade && `Grade ${education.grade}`].filter(Boolean).join('. ')}
+              />
+              {education.description && <p className="max-w-[62ch] text-text-secondary">{education.description}</p>}
+              {education.certificateUrl && <LinkList links={[{ label: 'View certificate', href: education.certificateUrl, kind: 'certificate' }]} />}
+            </Row>
+          ))}
+        </div>
       )}
-      {!loading && !error && data?.length > 0 && (
-        <TimelineList items={data} renderItem={(education) => <EducationCard education={education} />} />
-      )}
-    </section>
+    </Section>
   );
 }

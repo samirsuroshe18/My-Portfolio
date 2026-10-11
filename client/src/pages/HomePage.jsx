@@ -2,15 +2,12 @@ import { useEffect } from 'react';
 import { Navbar } from '../components/layout/Navbar.jsx';
 import { Footer } from '../components/layout/Footer.jsx';
 import { HeroSection } from '../components/sections/HeroSection.jsx';
-import { AboutSection } from '../components/sections/AboutSection.jsx';
-import { SkillsSection } from '../components/sections/SkillsSection.jsx';
-import { ExperienceSection } from '../components/sections/ExperienceSection.jsx';
 import { ProjectsSection } from '../components/sections/ProjectsSection.jsx';
+import { ExperienceSection } from '../components/sections/ExperienceSection.jsx';
 import { OpenSourceSection } from '../components/sections/OpenSourceSection.jsx';
-import { HackathonsSection } from '../components/sections/HackathonsSection.jsx';
+import { SkillsSection } from '../components/sections/SkillsSection.jsx';
 import { EducationSection } from '../components/sections/EducationSection.jsx';
 import { BlogsSection } from '../components/sections/BlogsSection.jsx';
-import { GitHubActivitySection } from '../components/sections/GitHubActivitySection.jsx';
 import { ContactSection } from '../components/sections/ContactSection.jsx';
 import { usePortfolioData } from '../hooks/usePortfolioData.js';
 
@@ -30,17 +27,14 @@ export function HomePage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="mx-auto flex max-w-[1120px] flex-col gap-14 px-[clamp(16px,5vw,48px)] pb-20 pt-8 sm:gap-16 sm:pt-14 lg:gap-20">
         <HeroSection />
-        <AboutSection />
-        <ExperienceSection />
         <ProjectsSection />
+        <ExperienceSection />
         <OpenSourceSection />
-        <HackathonsSection />
         <SkillsSection />
         <EducationSection />
         <BlogsSection />
-        <GitHubActivitySection />
         <ContactSection />
       </main>
       <Footer />

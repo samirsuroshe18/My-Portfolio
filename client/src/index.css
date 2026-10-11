@@ -3,35 +3,55 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Hanken Grotesk", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
 
-  --color-bg: #ffffff;
-  --color-bg-light: #f0f0f0;
+  --color-bg: #faf9f6;
+  --color-bg-light: #ffffff;
   --color-card: #ffffff;
-  --color-card-light: #f7f7f7;
-  --color-border: #e5e5e5;
-  --color-primary: #854ce6;
-  --color-primary-2: #ff00c8;
-  --color-primary-rgb: 133, 76, 230;
-  --color-text-primary: #111111;
-  --color-text-secondary: #48494a;
+  --color-card-light: #eae7df;
+  --color-border: #e3dfd6;
+  --color-primary: #0e6b5e;
+  --color-primary-2: #0e6b5e;
+  --color-on-primary: #ffffff;
+  --color-primary-rgb: 14, 107, 94;
+  --color-text-primary: #1b1a17;
+  --color-text-secondary: #625e55;
+  --color-skeleton: #eae7df;
+  --color-skeleton-hi: #f5f3ed;
 
-  --shadow-glow: 0 4px 24px 0 rgba(var(--color-primary-rgb), 0.18);
+  /* contribution calendar: GitHub's own greens, level 0 (no activity) to 4 */
+  --color-contrib-0: #eae7df;
+  --color-contrib-1: #9be9a8;
+  --color-contrib-2: #40c463;
+  --color-contrib-3: #30a14e;
+  --color-contrib-4: #216e39;
+
+  --shadow-glow: none;
 }
 
 .dark {
-  --color-bg: #1c1c27;
-  --color-bg-light: #1c1e27;
-  --color-card: #171721;
-  --color-card-light: #191924;
-  --color-border: rgba(133, 76, 230, 0.15);
-  --color-primary: #854ce6;
-  --color-primary-2: #ff00e5;
-  --color-primary-rgb: 133, 76, 230;
-  --color-text-primary: #f2f3f4;
-  --color-text-secondary: #b1b2b3;
+  --color-bg: #151412;
+  --color-bg-light: #1d1c19;
+  --color-card: #1d1c19;
+  --color-card-light: #252320;
+  --color-border: #302e2a;
+  --color-primary: #8fd3c8;
+  --color-primary-2: #8fd3c8;
+  --color-on-primary: #10211e;
+  --color-primary-rgb: 143, 211, 200;
+  --color-text-primary: #ede9e0;
+  --color-text-secondary: #a8a397;
+  --color-skeleton: #252320;
+  --color-skeleton-hi: #35322d;
 
-  --shadow-glow: 0 4px 24px 0 rgba(var(--color-primary-rgb), 0.25);
+  --color-contrib-0: #252320;
+  --color-contrib-1: #0e4429;
+  --color-contrib-2: #006d32;
+  --color-contrib-3: #26a641;
+  --color-contrib-4: #39d353;
+
+  color-scheme: dark;
 }
 
 html {
@@ -42,17 +62,39 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }
-::-webkit-scrollbar-track {
-  background: transparent;
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-skeleton);
 }
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-primary);
-  border-radius: 8px;
-  opacity: 0.6;
+.skeleton-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, var(--color-skeleton-hi), transparent);
+  animation: skeleton-sweep 1.3s ease-in-out infinite;
+}
+@keyframes skeleton-sweep {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .skeleton-shimmer::after {
+    animation: none;
+  }
 }
