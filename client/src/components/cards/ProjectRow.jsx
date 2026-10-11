@@ -1,7 +1,7 @@
 import { useId, useState } from 'react';
 import { LinkList } from '../ui/LinkList.jsx';
 import { TechTags } from '../ui/TechTags.jsx';
-import { MorePanel, MoreToggle } from './ProjectMore.jsx';
+import { ExpandableSummary, MorePanel } from './ProjectMore.jsx';
 import { cn } from '../../utils/classNames.js';
 import { formatDateRange } from '../../utils/formatDate.js';
 import { optimizeImage } from '../../utils/optimizeImage.js';
@@ -27,15 +27,15 @@ export function ProjectRow({ project, className = '' }) {
       <div className="flex min-w-0 flex-col gap-2">
         <div>
           <h3 className="text-[1.14rem] font-semibold leading-snug text-text-primary">{project.title}</h3>
-          {/* the details control shares the date line, so it adds no height to the row */}
-          <div className="flex items-baseline justify-between gap-3">
-            <p className="text-[0.9rem] tabular-nums text-text-secondary">{facts}</p>
-            {hasMore && <MoreToggle open={open} onToggle={() => setOpen((value) => !value)} panelId={panelId} />}
-          </div>
+          <p className="text-[0.9rem] tabular-nums text-text-secondary">{facts}</p>
         </div>
-        <p className={cn('text-[0.96rem] text-text-secondary', hasMore && !open && 'line-clamp-3')}>{summary}</p>
+        {hasMore ? (
+          <ExpandableSummary text={summary} lines={3} open={open} onToggle={() => setOpen(true)} panelId={panelId} className="text-[0.96rem] text-text-secondary" />
+        ) : (
+          <p className="text-[0.96rem] text-text-secondary">{summary}</p>
+        )}
         <TechTags items={project.techStack} limit={open ? undefined : 5} />
-        {open && <MorePanel id={panelId} highlights={highlights} fullDescription={fullDescription} />}
+        {open && <MorePanel id={panelId} highlights={highlights} fullDescription={fullDescription} onClose={() => setOpen(false)} />}
         <LinkList links={projectLinks(project)} />
       </div>
     </article>
