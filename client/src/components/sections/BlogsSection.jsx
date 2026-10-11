@@ -41,12 +41,13 @@ function PostRow({ blog }) {
 
 export function BlogsSection() {
   const { data, loading, error, refetch } = usePortfolioData('blogs');
-  const { data: github, loading: githubLoading } = usePortfolioData('github');
+  const { data: github } = usePortfolioData('github');
 
   const posts = data || [];
   const hasGithub = Boolean(github?.available);
 
-  if (!loading && !githubLoading && !error && posts.length === 0 && !hasGithub) return null;
+  // with no posts, the section waits for the GitHub data so it never shows a heading with nothing under it
+  if (!loading && !error && posts.length === 0 && !hasGithub) return null;
 
   return (
     <Section id="blog" title={posts.length > 0 || loading ? 'Writing and activity' : 'Activity'}>
