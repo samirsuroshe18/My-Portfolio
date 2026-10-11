@@ -27,15 +27,9 @@ function jobLines(job) {
   return [[job.company, job.location].filter(Boolean).join(', '), formatDateRange(job.startDate, job.endDate, job.isCurrent)];
 }
 
-function educationLines(education) {
-  const dates = formatDateRange(education.startDate, education.endDate, education.isCurrent);
-  return [education.school, [dates, education.grade].filter(Boolean).join(', ')];
-}
-
 export function HeroSection() {
   const { data, loading, error, refetch } = usePortfolioData('profile');
   const { data: experience } = usePortfolioData('experience');
-  const { data: education } = usePortfolioData('education');
   const { data: projects } = usePortfolioData('projects');
   const { data: openSource } = usePortfolioData('openSource');
 
@@ -45,8 +39,8 @@ export function HeroSection() {
   const profile = data?.profile;
   if (!profile) return null;
 
-  const glance = pickGlance(experience, education);
-  const hasGlance = glance.now || glance.before || glance.education;
+  const glance = pickGlance(experience);
+  const hasGlance = glance.now || glance.before;
   const proof = pickProof(projects, openSource);
   const roleLine = profile.headline || profile.roles?.slice(0, 2).join(' and ');
   const socialLinks = (data.socialLinks || [])
@@ -92,7 +86,6 @@ export function HeroSection() {
             <dl className="px-[22px] pb-2.5 pt-1.5">
               {glance.now && <GlanceRow label={currentJobLabel(glance.now)} title={glance.now.role} lines={jobLines(glance.now)} />}
               {glance.before && <GlanceRow label="Before" title={glance.before.role} lines={jobLines(glance.before)} />}
-              {glance.education && <GlanceRow label="Education" title={glance.education.degree} lines={educationLines(glance.education)} />}
             </dl>
           )}
         </aside>

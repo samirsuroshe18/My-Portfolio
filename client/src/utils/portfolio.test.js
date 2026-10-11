@@ -60,16 +60,15 @@ describe('pullRequestRef', () => {
 describe('pickGlance', () => {
   const exp = [{ _id: 1, isCurrent: false }, { _id: 2, isCurrent: true }, { _id: 3, isCurrent: false }];
   it('takes the current job as now and the first other job as before', () => {
-    const g = pickGlance(exp, [{ _id: 9 }]);
+    const g = pickGlance(exp);
     expect(g.now._id).toBe(2);
     expect(g.before._id).toBe(1);
-    expect(g.education._id).toBe(9);
   });
   it('falls back to the first job when none is current', () => {
-    expect(pickGlance([{ _id: 1 }, { _id: 2 }], []).now._id).toBe(1);
+    expect(pickGlance([{ _id: 1 }, { _id: 2 }]).now._id).toBe(1);
   });
   it('returns nulls for missing data', () => {
-    expect(pickGlance(null, null)).toEqual({ now: null, before: null, education: null });
+    expect(pickGlance(null)).toEqual({ now: null, before: null });
   });
 });
 

@@ -50,12 +50,12 @@ export function pullRequestRef(url) {
   return match ? `${match[1]} #${match[2]}` : '';
 }
 
-/** The three lines of the summary card: current job, the one before it, and education. */
-export function pickGlance(experience, education) {
+/** The two lines of the summary card: the current job and the one before it. */
+export function pickGlance(experience) {
   const jobs = experience || [];
   const now = jobs.find((job) => job.isCurrent) || jobs[0] || null;
   const before = jobs.find((job) => job !== now) || null;
-  return { now, before, education: education?.[0] || null };
+  return { now, before };
 }
 
 function projectProof(project) {
