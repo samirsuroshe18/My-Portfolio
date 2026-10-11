@@ -33,8 +33,8 @@ export function Navbar() {
           {logoText}
         </a>
 
-        {/* on phones the links drop to their own line and scroll sideways */}
-        <nav aria-label="Sections" className="order-3 min-w-0 basis-full overflow-x-auto sm:order-none sm:flex-1 sm:basis-auto">
+        {/* on phones the links drop to their own line and scroll sideways, with the scrollbar itself hidden */}
+        <nav aria-label="Sections" className="order-3 min-w-0 basis-full overflow-x-auto [scrollbar-width:none] sm:order-none sm:flex-1 sm:basis-auto [&::-webkit-scrollbar]:hidden">
           <ul className="flex w-max gap-1 sm:ml-auto">
             {navItems.map((item) => (
               <li key={item.href}>
