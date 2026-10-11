@@ -6,6 +6,7 @@ import { ProjectsSection } from '../components/sections/ProjectsSection.jsx';
 import { ExperienceSection } from '../components/sections/ExperienceSection.jsx';
 import { OpenSourceSection } from '../components/sections/OpenSourceSection.jsx';
 import { SkillsSection } from '../components/sections/SkillsSection.jsx';
+import { EducationSection } from '../components/sections/EducationSection.jsx';
 import { BlogsSection } from '../components/sections/BlogsSection.jsx';
 import { ContactSection } from '../components/sections/ContactSection.jsx';
 import { usePortfolioData } from '../hooks/usePortfolioData.js';
@@ -32,6 +33,7 @@ export function HomePage() {
         <ExperienceSection />
         <OpenSourceSection />
         <SkillsSection />
+        <EducationSection />
         <BlogsSection />
         <ContactSection />
       </main>
