@@ -26,11 +26,6 @@ function HackathonRow({ hackathon, onOpen }) {
   const members = hackathon.members || [];
   const sponsors = hackathon.sponsors || [];
   const facts = [hackathon.organizer, hackathon.duration, members.length > 0 && `team of ${members.length}`].filter(Boolean).join(', ');
-  const credits = [
-    { label: 'Team', value: members.map((member) => member.name).join(', ') },
-    { label: 'Sponsors', value: sponsors.join(', ') },
-  ].filter((credit) => credit.value);
-
   return (
     <Row meta={formatMonthYear(hackathon.date)}>
       <div className="grid gap-x-6 gap-y-4 md:grid-cols-[220px_minmax(0,1fr)]">
@@ -56,15 +51,36 @@ function HackathonRow({ hackathon, onOpen }) {
             {facts && <p className="text-[0.93rem] text-text-secondary">{facts}</p>}
           </div>
           <ClampedText text={hackathon.description} lines={2} className="max-w-[62ch] text-text-secondary" />
-          {credits.length > 0 && (
-            <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-[0.93rem]">
-              {credits.map((credit) => (
-                <div key={credit.label} className="contents">
-                  <dt className="font-semibold text-text-primary">{credit.label}</dt>
-                  <dd className="text-text-secondary">{credit.value}</dd>
-                </div>
-              ))}
-            </dl>
+          {/* one compact line: the team as overlapping photos, the sponsors as text */}
+          {(members.length > 0 || sponsors.length > 0) && (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.9rem] text-text-secondary">
+              {members.length > 0 && (
+                <ul aria-label={`Team: ${members.map((member) => member.name).join(', ')}`} className="flex flex-none items-center">
+                  {members.map((member) => (
+                    <li key={member.name} title={member.name} className="-ml-1.5 first:ml-0">
+                      {member.avatarUrl ? (
+                        <img
+                          src={optimizeImage(member.avatarUrl, 56)}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          className="h-6 w-6 rounded-full border-2 border-bg bg-skeleton object-cover"
+                        />
+                      ) : (
+                        <span aria-hidden="true" className="grid h-6 w-6 place-items-center rounded-full border-2 border-bg bg-card-light text-[0.65rem] font-semibold text-text-primary">
+                          {member.name.charAt(0)}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {sponsors.length > 0 && (
+                <p className="min-w-0">
+                  <span className="font-semibold text-text-primary">Sponsors</span> {sponsors.join(', ')}
+                </p>
+              )}
+            </div>
           )}
           <TechTags items={hackathon.tags} limit={7} />
           <LinkList links={hackathonLinks(hackathon)} />
