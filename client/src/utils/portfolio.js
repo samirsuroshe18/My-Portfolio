@@ -110,3 +110,31 @@ export function projectExtras(project) {
   const highlights = project.highlights || [];
   return { summary, fullDescription, highlights, hasMore: highlights.length > 0 || Boolean(fullDescription) };
 }
+
+const MONTH_LABELS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const utcDate = (date) => new Date(`${date}T00:00:00Z`);
+
+/**
+ * Arranges contribution days ({ date: 'YYYY-MM-DD', level }) the way GitHub draws them:
+ * one column per week, Sunday at the top, with a label on the column where each month starts.
+ */
+export function calendarWeeks(days) {
+  const list = days || [];
+  if (list.length === 0) return { weeks: [], months: [] };
+
+  const weeks = [Array(utcDate(list[0].date).getUTCDay()).fill(null)];
+  for (const day of list) {
+    if (weeks.at(-1).length === 7) weeks.push([]);
+    weeks.at(-1).push(day);
+  }
+
+  const months = [];
+  weeks.forEach((week, column) => {
+    const month = utcDate(week.find(Boolean).date).getUTCMonth();
+    if (months.length === 0 || months.at(-1).month !== month) months.push({ label: MONTH_LABELS[month], column, month });
+  });
+  // a short first month would sit on top of the next label
+  if (months.length > 1 && months[1].column - months[0].column < 3) months.shift();
+
+  return { weeks, months: months.map(({ label, column }) => ({ label, column })) };
+}

@@ -20,6 +20,13 @@
   --color-skeleton: #eae7df;
   --color-skeleton-hi: #f5f3ed;
 
+  /* contribution calendar: GitHub's own greens, level 0 (no activity) to 4 */
+  --color-contrib-0: #eae7df;
+  --color-contrib-1: #9be9a8;
+  --color-contrib-2: #40c463;
+  --color-contrib-3: #30a14e;
+  --color-contrib-4: #216e39;
+
   --shadow-glow: none;
 }
 
@@ -37,6 +44,12 @@
   --color-text-secondary: #a8a397;
   --color-skeleton: #252320;
   --color-skeleton-hi: #35322d;
+
+  --color-contrib-0: #252320;
+  --color-contrib-1: #0e4429;
+  --color-contrib-2: #006d32;
+  --color-contrib-3: #26a641;
+  --color-contrib-4: #39d353;
 
   color-scheme: dark;
 }

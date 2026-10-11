@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras } from './portfolio.js';
+import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras, calendarWeeks } from './portfolio.js';
 
 const p = (over) => ({ _id: over.title, title: 't', platform: 'web', isFeatured: false, ...over });
 
@@ -120,5 +120,27 @@ describe('projectExtras', () => {
   it('has nothing more when the description is already the summary', () => {
     expect(projectExtras({ description: 'only' })).toEqual({ summary: 'only', fullDescription: '', highlights: [], hasMore: false });
     expect(projectExtras({})).toEqual({ summary: '', fullDescription: '', highlights: [], hasMore: false });
+  });
+});
+
+describe('calendarWeeks', () => {
+  // 2026-01-01 is a Thursday
+  const days = ['2026-01-01', '2026-01-02', '2026-01-03', '2026-01-04', '2026-01-05'].map((date, i) => ({ date, level: i % 5 }));
+  it('lays days out in Sunday-first weeks, padding the first one', () => {
+    const { weeks } = calendarWeeks(days);
+    expect(weeks).toHaveLength(2);
+    expect(weeks[0].map((d) => d?.date ?? null)).toEqual([null, null, null, null, '2026-01-01', '2026-01-02', '2026-01-03']);
+    expect(weeks[1].map((d) => d?.date ?? null)).toEqual(['2026-01-04', '2026-01-05']);
+  });
+  it('labels the column where each month starts', () => {
+    const feb = Array.from({ length: 40 }, (_, i) => ({ date: new Date(Date.UTC(2026, 0, 1 + i)).toISOString().slice(0, 10), level: 0 }));
+    expect(calendarWeeks(feb).months).toEqual([{ label: 'Jan', column: 0 }, { label: 'Feb', column: 5 }]);
+  });
+  it('drops a first label that would collide with the next one', () => {
+    const late = Array.from({ length: 20 }, (_, i) => ({ date: new Date(Date.UTC(2026, 0, 28 + i)).toISOString().slice(0, 10), level: 0 }));
+    expect(calendarWeeks(late).months).toEqual([{ label: 'Feb', column: 1 }]);
+  });
+  it('handles no data', () => {
+    expect(calendarWeeks(null)).toEqual({ weeks: [], months: [] });
   });
 });

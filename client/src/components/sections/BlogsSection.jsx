@@ -61,7 +61,7 @@ export function BlogsSection() {
         </div>
       )}
 
-      {hasGithub && <GitHubActivityGraph username={github.username} chartUrl={github.chartUrl} profileUrl={github.profileUrl} />}
+      {hasGithub && <GitHubActivityGraph username={github.username} chartUrl={github.chartUrl} profileUrl={github.profileUrl} calendar={github.calendar} />}
     </Section>
   );
 }
