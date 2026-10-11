@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Section } from '../layout/Section.jsx';
 import { ContactForm } from './ContactForm.jsx';
 import { Button } from '../ui/Button.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
@@ -36,20 +35,21 @@ export function ContactSection() {
   const { data } = usePortfolioData('profile');
   const profile = data?.profile;
 
+  // The heading sits inside the left column, so on wide screens the form starts level with it
+  // instead of below it. On phones the two stack: heading and contact details, then the form.
   return (
-    <Section id="contact" title="Get in touch">
-      <div className="grid gap-x-[72px] gap-y-8 md:grid-cols-[5fr_6fr]">
-        <div className="flex min-w-0 flex-col items-start gap-[18px] text-text-secondary">
-          <p>Send a message here or email me directly.</p>
-          {profile?.contactEmail && <EmailAddress email={profile.contactEmail} />}
-          {profile?.resumeUrl && (
-            <Button as="a" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer" variant="outline">
-              Read resume
-            </Button>
-          )}
-        </div>
-        <ContactForm />
+    <section id="contact" className="grid min-w-0 scroll-mt-28 gap-x-[72px] gap-y-8 sm:scroll-mt-24 md:grid-cols-[5fr_6fr]">
+      <div className="flex min-w-0 flex-col items-start gap-[18px] text-text-secondary">
+        <h2 className="mb-1.5 font-serif text-[clamp(2.1rem,4vw,2.9rem)] leading-[1.05] tracking-[-0.01em] text-text-primary">Get in touch</h2>
+        <p>Send a message here or email me directly.</p>
+        {profile?.contactEmail && <EmailAddress email={profile.contactEmail} />}
+        {profile?.resumeUrl && (
+          <Button as="a" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer" variant="outline">
+            Read resume
+          </Button>
+        )}
       </div>
-    </Section>
+      <ContactForm />
+    </section>
   );
 }
