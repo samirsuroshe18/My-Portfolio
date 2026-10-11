@@ -92,6 +92,10 @@ describe('pickProof', () => {
     const withApk = [projects[0], p({ title: 'Apk', isFeatured: true, liveUrl: 'https://github.com/u/r/releases/tag/v1' }), projects[2]];
     expect(pickProof(withApk, []).map((x) => x.title)).toEqual(['A', 'C']);
   });
+  it('falls back to other projects with a live demo when too few are featured', () => {
+    const oneFeatured = [projects[0], p({ title: 'Apk', liveUrl: 'https://github.com/u/r/releases/tag/v1' }), p({ title: 'E', liveUrl: 'https://e.app', shortDescription: 'e app' }), p({ title: 'F', liveUrl: 'https://f.app' })];
+    expect(pickProof(oneFeatured, os).map((x) => x.title)).toEqual(['A', 'Anki', 'E']);
+  });
   it('returns what exists', () => {
     expect(pickProof(null, null)).toEqual([]);
     expect(pickProof(projects, []).map((x) => x.title)).toEqual(['A', 'C']);
