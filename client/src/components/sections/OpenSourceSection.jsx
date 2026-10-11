@@ -7,8 +7,10 @@ import { ProjectDetailModal } from '../modals/ProjectDetailModal.jsx';
 import { RowsSkeleton } from '../ui/Skeleton.jsx';
 import { ErrorState } from '../ui/ErrorState.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
+import { cn } from '../../utils/classNames.js';
 import { formatMonthYear } from '../../utils/formatDate.js';
 import { mapHackathonToModal, mapOpenSourceToModal } from '../../utils/mapToModalItem.js';
+import { optimizeImage } from '../../utils/optimizeImage.js';
 import { pullRequestRef } from '../../utils/portfolio.js';
 
 const titleButton = 'cursor-pointer text-left text-[1.14rem] font-semibold leading-snug text-text-primary transition-colors hover:text-primary';
@@ -62,18 +64,31 @@ function HackathonRow({ hackathon, onOpen }) {
 
   return (
     <Row meta={formatMonthYear(hackathon.date)}>
-      <div>
-        <h3>
-          <button onClick={onOpen} className={titleButton}>
-            {hackathon.title}
-          </button>
-        </h3>
-        {facts && <p className="text-[0.93rem] text-text-secondary">{facts}</p>}
+      <div className="grid gap-x-6 gap-y-4 md:grid-cols-[220px_minmax(0,1fr)]">
+        {hackathon.image && (
+          <img
+            src={optimizeImage(hackathon.image, 440)}
+            alt={`${hackathon.organizer || hackathon.title} poster`}
+            loading="lazy"
+            decoding="async"
+            className="aspect-[16/10] w-full rounded-[10px] border border-border bg-skeleton object-cover"
+          />
+        )}
+        <div className={cn('flex min-w-0 flex-col gap-2.5', !hackathon.image && 'md:col-span-2')}>
+          <div>
+            <h3>
+              <button onClick={onOpen} className={titleButton}>
+                {hackathon.title}
+              </button>
+            </h3>
+            {facts && <p className="text-[0.93rem] text-text-secondary">{facts}</p>}
+          </div>
+          {hackathon.description && <p className="max-w-[62ch] text-text-secondary">{hackathon.description}</p>}
+          {credits && <p className="text-[0.93rem] text-text-secondary">{credits}</p>}
+          <TechTags items={hackathon.tags} limit={7} />
+          <LinkList links={hackathonLinks(hackathon)} />
+        </div>
       </div>
-      {hackathon.description && <p className="max-w-[62ch] text-text-secondary">{hackathon.description}</p>}
-      {credits && <p className="text-[0.93rem] text-text-secondary">{credits}</p>}
-      <TechTags items={hackathon.tags} limit={7} />
-      <LinkList links={hackathonLinks(hackathon)} />
     </Row>
   );
 }
