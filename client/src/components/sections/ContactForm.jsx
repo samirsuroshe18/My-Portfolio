@@ -39,21 +39,26 @@ export function ContactForm() {
     }
   };
 
+  // the fields sit together in one panel, so the form reads as a single thing to fill in
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex min-w-0 flex-col gap-4">
-      <Input label="Your name" autoComplete="name" className="bg-card!" value={values.name} onChange={(e) => setField('name', e.target.value)} error={errors.name} required />
-      <Input label="Your email" type="email" autoComplete="email" className="bg-card!" value={values.email} onChange={(e) => setField('email', e.target.value)} error={errors.email} required />
-      <Input label="Subject" className="bg-card!" value={values.subject} onChange={(e) => setField('subject', e.target.value)} />
-      <Textarea label="Message" rows={5} className="bg-card!" value={values.message} onChange={(e) => setField('message', e.target.value)} error={errors.message} required />
+    <form onSubmit={handleSubmit} noValidate className="flex min-w-0 flex-col gap-3.5 rounded-2xl border border-border bg-card p-4 sm:gap-4 sm:p-6">
+      <div className="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
+        <Input label="Your name" autoComplete="name" className="bg-bg!" value={values.name} onChange={(e) => setField('name', e.target.value)} error={errors.name} required />
+        <Input label="Your email" type="email" autoComplete="email" className="bg-bg!" value={values.email} onChange={(e) => setField('email', e.target.value)} error={errors.email} required />
+      </div>
+      <Input label="Subject" className="bg-bg!" value={values.subject} onChange={(e) => setField('subject', e.target.value)} />
+      <Textarea label="Message" rows={4} className="bg-bg!" value={values.message} onChange={(e) => setField('message', e.target.value)} error={errors.message} required />
 
-      <Button type="submit" size="lg" className="self-start" loading={status === 'submitting'} disabled={status === 'submitting'}>
+      <Button type="submit" size="lg" className="w-full sm:w-auto sm:self-start" loading={status === 'submitting'} disabled={status === 'submitting'}>
         Send message
       </Button>
 
-      <p role="status" className="min-h-6 text-sm font-medium">
-        {status === 'success' && <span className="text-primary">Message sent. I'll get back to you soon.</span>}
-        {status === 'error' && <span className="text-red-500">{serverError}</span>}
-      </p>
+      {status !== 'idle' && status !== 'submitting' && (
+        <p role="status" className="text-sm font-medium">
+          {status === 'success' && <span className="text-primary">Message sent. I'll get back to you soon.</span>}
+          {status === 'error' && <span className="text-red-500">{serverError}</span>}
+        </p>
+      )}
     </form>
   );
 }
