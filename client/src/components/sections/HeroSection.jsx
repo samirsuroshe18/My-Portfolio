@@ -49,7 +49,7 @@ export function HeroSection() {
   const socialLinks = (data.socialLinks || []).filter((link) => link.platform !== 'mail');
 
   return (
-    <section id="about" className="grid scroll-mt-28 sm:scroll-mt-24 gap-x-[72px] gap-y-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-end">
+    <section id="about" className="grid scroll-mt-28 sm:scroll-mt-24 gap-x-[72px] gap-y-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-stretch">
       <div className="flex min-w-0 flex-col gap-6">
         <h1 className="font-serif text-[clamp(3.2rem,8.4vw,6.4rem)] leading-[0.95] tracking-[-0.02em] text-text-primary">{profile.name}</h1>
         {roleLine && <p className="text-[clamp(1.2rem,2.2vw,1.5rem)] font-medium leading-snug text-text-primary">{roleLine}</p>}
@@ -78,15 +78,19 @@ export function HeroSection() {
       </div>
 
       {(profile.avatarUrl || hasGlance) && (
-        <aside aria-label="Summary" className="overflow-hidden rounded-[18px] border border-border bg-card sm:grid sm:grid-cols-[200px_minmax(0,1fr)] lg:block">
+        <aside aria-label="Summary" className="overflow-hidden rounded-[18px] border border-border bg-card sm:grid sm:grid-cols-[200px_minmax(0,1fr)] lg:flex lg:flex-col">
+          {/* phones: a short banner, so the rows under it come into view sooner. Wide screens: the card
+              is as tall as the text beside it, and the photo fills whatever height the rows leave. */}
           {profile.avatarUrl && (
-            <img
-              src={optimizeImage(profile.avatarUrl, 800)}
-              fetchPriority="high"
-              decoding="async"
-              alt={profile.name}
-              className="aspect-[5/4] w-full bg-skeleton object-cover object-[50%_18%] sm:aspect-auto sm:h-full lg:aspect-[5/4] lg:h-auto"
-            />
+            <div className="max-lg:contents lg:relative lg:min-h-[200px] lg:flex-1">
+              <img
+                src={optimizeImage(profile.avatarUrl, 800)}
+                fetchPriority="high"
+                decoding="async"
+                alt={profile.name}
+                className="aspect-[2/1] w-full bg-skeleton object-cover object-[50%_9%] sm:aspect-auto sm:h-full sm:object-[50%_18%] lg:absolute lg:inset-0 lg:object-[50%_7%]"
+              />
+            </div>
           )}
           {hasGlance && (
             <dl className="px-[22px] pb-2.5 pt-1.5">

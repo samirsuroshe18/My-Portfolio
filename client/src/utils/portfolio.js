@@ -59,22 +59,25 @@ export function pickGlance(experience) {
   return { now, before };
 }
 
+const PROOF_LABEL = { store: 'On the Play Store', apk: 'Download APK', live: 'Live demo' };
+
 function projectProof(project) {
-  const onPlayStore = project.liveUrl.includes('play.google.com');
+  const { kind } = liveLink(project.liveUrl);
   return {
     title: project.title,
     // only the short description: this line is shown in full, so the long one would not fit
     text: project.shortDescription || '',
-    label: onPlayStore ? 'On the Play Store' : 'Live demo',
+    label: PROOF_LABEL[kind],
     href: project.liveUrl,
-    kind: onPlayStore ? 'store' : 'live',
+    kind,
   };
 }
 
-/** Up to three things a visitor can open straight away: a live project, a merged contribution, another live project. */
+/** Up to three things a visitor can open straight away: a project, a merged contribution, another project. */
 export function pickProof(projects, openSource) {
-  // an APK download page is not something a visitor can try straight away, so it does not count here
-  const live = (projects || []).filter((project) => project.isFeatured && project.liveUrl && !project.liveUrl.includes('/releases/'));
+  const openable = (projects || []).filter((project) => project.liveUrl);
+  // featured projects come first; the next ones in order fill in when too few are featured
+  const live = [...openable.filter((project) => project.isFeatured), ...openable.filter((project) => !project.isFeatured)];
   const contribution = (openSource || []).find((item) => item.pullRequestUrl);
   const proof = [];
 
@@ -188,4 +191,20 @@ export function descriptionBlocks(text) {
   closeParagraph();
 
   return blocks.filter((block) => block.type !== 'list' || block.items.length > 0);
+}
+
+/**
+ * Splits projects into runs of neighbours that share a layout (featured or compact) without
+ * changing their order, so the page can follow the saved order exactly while still drawing
+ * featured projects large.
+ */
+export function projectRuns(projects) {
+  const runs = [];
+  for (const project of projects || []) {
+    const featured = Boolean(project.isFeatured);
+    const last = runs.at(-1);
+    if (last && last.featured === featured) last.items.push(project);
+    else runs.push({ featured, items: [project] });
+  }
+  return runs;
 }

@@ -11,6 +11,7 @@ const FALLBACK_NAV_ITEMS = [
   { label: 'Work', href: '#projects' },
   { label: 'Experience', href: '#experience' },
   { label: 'Open source', href: '#open-source' },
+  { label: 'Hackathons', href: '#hackathons' },
   { label: 'Skills', href: '#skills' },
   { label: 'Writing', href: '#blog' },
   { label: 'Contact', href: '#contact' },
@@ -62,6 +63,16 @@ export function Navbar() {
 
   const logoText = settings?.logoText || 'Portfolio';
   const navRow = useScrollEdges();
+  // on a phone the row is wider than the screen: bring the active link into view as the page scrolls
+  useEffect(() => {
+    const row = navRow.ref.current;
+    const link = row?.querySelector('[aria-current="true"]');
+    if (!link || row.scrollWidth <= row.clientWidth) return;
+    const linkLeft = link.getBoundingClientRect().left - row.getBoundingClientRect().left + row.scrollLeft;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    row.scrollTo({ left: Math.max(0, linkLeft - (row.clientWidth - link.offsetWidth) / 2), behavior: reduceMotion ? 'auto' : 'smooth' });
+  }, [activeId, navRow.ref]);
+
   const githubUrl = profileData?.profile?.githubUrl;
   const showGithubButton = settings?.showGithubButton !== false && githubUrl;
 

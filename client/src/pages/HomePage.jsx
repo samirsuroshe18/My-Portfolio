@@ -5,6 +5,7 @@ import { HeroSection } from '../components/sections/HeroSection.jsx';
 import { ProjectsSection } from '../components/sections/ProjectsSection.jsx';
 import { ExperienceSection } from '../components/sections/ExperienceSection.jsx';
 import { OpenSourceSection } from '../components/sections/OpenSourceSection.jsx';
+import { HackathonsSection } from '../components/sections/HackathonsSection.jsx';
 import { SkillsSection } from '../components/sections/SkillsSection.jsx';
 import { EducationSection } from '../components/sections/EducationSection.jsx';
 import { BlogsSection } from '../components/sections/BlogsSection.jsx';
@@ -32,6 +33,7 @@ export function HomePage() {
         <ProjectsSection />
         <ExperienceSection />
         <OpenSourceSection />
+        <HackathonsSection />
         <SkillsSection />
         <EducationSection />
         <BlogsSection />

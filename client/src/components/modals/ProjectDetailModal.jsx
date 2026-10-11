@@ -17,6 +17,8 @@ export function ProjectDetailModal({ item, onClose }) {
         <div>
           {item.image && <img src={optimizeImage(item.image, 1400)} alt={item.title} className="mb-5 max-h-72 w-full rounded-xl object-cover" />}
 
+          {item.logo && <img src={optimizeImage(item.logo, 128)} alt="" className="mb-4 h-14 w-14 rounded-xl bg-white object-contain p-1" />}
+
           <h2 className="text-2xl font-bold text-text-primary">{item.title}</h2>
           {item.subtitle && <p className="mt-1 text-base text-text-secondary">{item.subtitle}</p>}
           {item.meta && <p className="mt-1 text-sm text-text-secondary/80">{item.meta}</p>}

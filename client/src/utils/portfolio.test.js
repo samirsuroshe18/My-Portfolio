@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras, calendarWeeks, pickActiveSection, descriptionBlocks } from './portfolio.js';
+import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras, calendarWeeks, pickActiveSection, descriptionBlocks, projectRuns } from './portfolio.js';
 
 const p = (over) => ({ _id: over.title, title: 't', platform: 'web', isFeatured: false, ...over });
 
@@ -88,9 +88,13 @@ describe('pickProof', () => {
       { title: 'C', text: 'c app', label: 'Live demo', href: 'https://c.app', kind: 'live' },
     ]);
   });
-  it('skips featured projects whose link is only an APK download', () => {
-    const withApk = [projects[0], p({ title: 'Apk', isFeatured: true, liveUrl: 'https://github.com/u/r/releases/tag/v1' }), projects[2]];
-    expect(pickProof(withApk, []).map((x) => x.title)).toEqual(['A', 'C']);
+  it('labels an APK download as a download, not a live demo', () => {
+    const withApk = [projects[0], p({ title: 'Apk', isFeatured: true, liveUrl: 'https://github.com/u/r/releases/tag/v1', shortDescription: 'apk app' })];
+    expect(pickProof(withApk, [])[1]).toEqual({ title: 'Apk', text: 'apk app', label: 'Download APK', href: 'https://github.com/u/r/releases/tag/v1', kind: 'apk' });
+  });
+  it('falls back to the next projects in order when too few are featured', () => {
+    const oneFeatured = [projects[0], p({ title: 'NoLink' }), p({ title: 'Apk', liveUrl: 'https://github.com/u/r/releases/tag/v1' }), p({ title: 'E', liveUrl: 'https://e.app' })];
+    expect(pickProof(oneFeatured, os).map((x) => x.title)).toEqual(['A', 'Anki', 'Apk']);
   });
   it('returns what exists', () => {
     expect(pickProof(null, null)).toEqual([]);
@@ -189,5 +193,21 @@ describe('descriptionBlocks', () => {
   it('handles empty input', () => {
     expect(descriptionBlocks('')).toEqual([]);
     expect(descriptionBlocks(undefined)).toEqual([]);
+  });
+});
+
+describe('projectRuns', () => {
+  const list = [p({ title: 'a', isFeatured: true }), p({ title: 'b' }), p({ title: 'c' }), p({ title: 'd', isFeatured: true }), p({ title: 'e', isFeatured: true }), p({ title: 'f' })];
+  it('keeps the given order and groups neighbours of the same kind', () => {
+    expect(projectRuns(list).map((run) => [run.featured, run.items.map((x) => x.title)])).toEqual([
+      [true, ['a']],
+      [false, ['b', 'c']],
+      [true, ['d', 'e']],
+      [false, ['f']],
+    ]);
+  });
+  it('handles no data', () => {
+    expect(projectRuns(null)).toEqual([]);
+    expect(projectRuns([])).toEqual([]);
   });
 });
