@@ -47,7 +47,7 @@ export function mapOpenSourceToModal(item) {
   if (item.repositoryUrl) actions.push({ label: 'View Repository', href: item.repositoryUrl, variant: 'primary' });
 
   return {
-    image: item.image,
+    logo: item.image,
     title: item.title,
     subtitle: item.projectName,
     meta: `${formatDate(item.date)} • ${item.status}`,

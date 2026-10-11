@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras, calendarWeeks, pickActiveSection, descriptionBlocks } from './portfolio.js';
+import { platformKind, partitionProjects, projectLinks, pullRequestRef, pickGlance, pickProof, navHref, currentJobLabel, projectExtras, calendarWeeks, pickActiveSection, descriptionBlocks, projectRuns } from './portfolio.js';
 
 const p = (over) => ({ _id: over.title, title: 't', platform: 'web', isFeatured: false, ...over });
 
@@ -189,5 +189,21 @@ describe('descriptionBlocks', () => {
   it('handles empty input', () => {
     expect(descriptionBlocks('')).toEqual([]);
     expect(descriptionBlocks(undefined)).toEqual([]);
+  });
+});
+
+describe('projectRuns', () => {
+  const list = [p({ title: 'a', isFeatured: true }), p({ title: 'b' }), p({ title: 'c' }), p({ title: 'd', isFeatured: true }), p({ title: 'e', isFeatured: true }), p({ title: 'f' })];
+  it('keeps the given order and groups neighbours of the same kind', () => {
+    expect(projectRuns(list).map((run) => [run.featured, run.items.map((x) => x.title)])).toEqual([
+      [true, ['a']],
+      [false, ['b', 'c']],
+      [true, ['d', 'e']],
+      [false, ['f']],
+    ]);
+  });
+  it('handles no data', () => {
+    expect(projectRuns(null)).toEqual([]);
+    expect(projectRuns([])).toEqual([]);
   });
 });

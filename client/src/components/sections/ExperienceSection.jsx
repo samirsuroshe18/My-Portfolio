@@ -1,6 +1,7 @@
 import { Section } from '../layout/Section.jsx';
 import { Row } from '../ui/Row.jsx';
 import { EntryHeading } from '../ui/EntryHeading.jsx';
+import { ClampedText } from '../ui/ClampedText.jsx';
 import { LinkList } from '../ui/LinkList.jsx';
 import { TechTags } from '../ui/TechTags.jsx';
 import { RowsSkeleton } from '../ui/Skeleton.jsx';
@@ -13,7 +14,7 @@ function ExperienceRow({ experience }) {
   return (
     <Row meta={formatDateRange(experience.startDate, experience.endDate, experience.isCurrent)}>
       <EntryHeading logo={experience.companyLogo} title={experience.role} subtitle={[experience.company, experience.location].filter(Boolean).join(', ')} />
-      {experience.description && <p className="max-w-[62ch] text-text-secondary">{experience.description}</p>}
+      <ClampedText text={experience.description} lines={2} className="max-w-[62ch] text-text-secondary" />
       {experience.bulletPoints?.length > 0 && (
         <ul className="flex max-w-[60ch] list-disc flex-col gap-1 pl-[18px] text-[0.95rem] text-text-secondary">
           {experience.bulletPoints.map((point) => (

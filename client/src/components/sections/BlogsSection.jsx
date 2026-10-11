@@ -4,24 +4,27 @@ import { GitHubActivityGraph } from '../graphs/GitHubActivityGraph.jsx';
 import { RowsSkeleton } from '../ui/Skeleton.jsx';
 import { ErrorState } from '../ui/ErrorState.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
+import { cn } from '../../utils/classNames.js';
 import { formatMonthYear } from '../../utils/formatDate.js';
 import { optimizeImage } from '../../utils/optimizeImage.js';
 
 function PostRow({ blog }) {
+  // On a phone the cover sits beside the text, and the title and description are cut to two
+  // lines each so the text stays about as tall as the cover. Wider screens show everything.
   return (
     <Row meta={formatMonthYear(blog.publishedAt)}>
-      <div className="grid gap-x-6 gap-y-4 md:grid-cols-[220px_minmax(0,1fr)]">
+      <div className="grid grid-cols-[128px_minmax(0,1fr)] items-start gap-x-4 gap-y-4 md:grid-cols-[220px_minmax(0,1fr)] md:gap-x-6">
         {blog.coverImage && (
           <img
             src={optimizeImage(blog.coverImage, 440)}
             alt=""
             loading="lazy"
             decoding="async"
-            className="aspect-[16/10] w-full max-w-[260px] rounded-[10px] border border-border bg-skeleton object-cover md:max-w-none"
+            className="aspect-[4/3] w-full rounded-[10px] border border-border bg-skeleton object-cover md:aspect-[16/10]"
           />
         )}
-        <div className="flex min-w-0 flex-col gap-2.5">
-          <h3 className="text-[1.14rem] font-semibold leading-snug">
+        <div className={cn('flex min-w-0 flex-col gap-1 md:gap-2.5', !blog.coverImage && 'col-span-2')}>
+          <h3 className="line-clamp-2 text-[1rem] font-semibold leading-snug md:line-clamp-none md:text-[1.14rem]">
             <a
               href={blog.url}
               target="_blank"
@@ -31,8 +34,8 @@ function PostRow({ blog }) {
               {blog.title}
             </a>
           </h3>
-          {blog.description && <p className="max-w-[62ch] text-text-secondary">{blog.description}</p>}
-          {blog.tags?.length > 0 && <p className="text-[0.93rem] text-text-secondary">{blog.tags.slice(0, 3).join(', ')}</p>}
+          {blog.description && <p className="line-clamp-2 max-w-[62ch] text-[0.9rem] text-text-secondary md:line-clamp-none md:text-[1rem]">{blog.description}</p>}
+          {blog.tags?.length > 0 && <p className="hidden text-[0.93rem] text-text-secondary md:block">{blog.tags.slice(0, 3).join(', ')}</p>}
         </div>
       </div>
     </Row>

@@ -189,3 +189,19 @@ export function descriptionBlocks(text) {
 
   return blocks.filter((block) => block.type !== 'list' || block.items.length > 0);
 }
+
+/**
+ * Splits projects into runs of neighbours that share a layout (featured or compact) without
+ * changing their order, so the page can follow the saved order exactly while still drawing
+ * featured projects large.
+ */
+export function projectRuns(projects) {
+  const runs = [];
+  for (const project of projects || []) {
+    const featured = Boolean(project.isFeatured);
+    const last = runs.at(-1);
+    if (last && last.featured === featured) last.items.push(project);
+    else runs.push({ featured, items: [project] });
+  }
+  return runs;
+}
