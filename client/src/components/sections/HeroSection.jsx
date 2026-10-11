@@ -1,5 +1,6 @@
 import { Button } from '../ui/Button.jsx';
 import { LinkList } from '../ui/LinkList.jsx';
+import { SocialLinks } from '../layout/SocialLinks.jsx';
 import { HeroSkeleton } from '../ui/Skeleton.jsx';
 import { ErrorState } from '../ui/ErrorState.jsx';
 import { usePortfolioData } from '../../hooks/usePortfolioData.js';
@@ -43,9 +44,7 @@ export function HeroSection() {
   const hasGlance = glance.now || glance.before;
   const proof = pickProof(projects, openSource);
   const roleLine = profile.headline || profile.roles?.slice(0, 2).join(' and ');
-  const socialLinks = (data.socialLinks || [])
-    .filter((link) => link.platform !== 'mail')
-    .map((link) => ({ label: link.label || link.platform, href: link.url }));
+  const socialLinks = (data.socialLinks || []).filter((link) => link.platform !== 'mail');
 
   return (
     <section id="about" className="grid scroll-mt-24 gap-x-[72px] gap-y-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-end">
@@ -68,7 +67,7 @@ export function HeroSection() {
           </Button>
         </div>
 
-        <LinkList links={socialLinks} />
+        <SocialLinks links={socialLinks} />
       </div>
 
       {(profile.avatarUrl || hasGlance) && (
