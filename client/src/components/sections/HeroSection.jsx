@@ -79,13 +79,14 @@ export function HeroSection() {
 
       {(profile.avatarUrl || hasGlance) && (
         <aside aria-label="Summary" className="overflow-hidden rounded-[18px] border border-border bg-card sm:grid sm:grid-cols-[200px_minmax(0,1fr)] lg:block">
+          {/* on phones the photo is a short banner, so the two rows under it come into view sooner */}
           {profile.avatarUrl && (
             <img
               src={optimizeImage(profile.avatarUrl, 800)}
               fetchPriority="high"
               decoding="async"
               alt={profile.name}
-              className="aspect-[5/4] w-full bg-skeleton object-cover object-[50%_18%] sm:aspect-auto sm:h-full lg:aspect-[5/4] lg:h-auto"
+              className="aspect-[2/1] w-full bg-skeleton object-cover object-[50%_9%] sm:aspect-auto sm:h-full sm:object-[50%_18%] lg:aspect-[5/4] lg:h-auto"
             />
           )}
           {hasGlance && (
