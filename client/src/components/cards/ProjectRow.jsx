@@ -27,15 +27,16 @@ export function ProjectRow({ project, className = '' }) {
       <div className="flex min-w-0 flex-col gap-2">
         <div>
           <h3 className="text-[1.14rem] font-semibold leading-snug text-text-primary">{project.title}</h3>
-          <p className="text-[0.9rem] tabular-nums text-text-secondary">{facts}</p>
+          {/* the details control shares the date line, so it adds no height to the row */}
+          <div className="flex items-baseline justify-between gap-3">
+            <p className="text-[0.9rem] tabular-nums text-text-secondary">{facts}</p>
+            {hasMore && <MoreToggle open={open} onToggle={() => setOpen((value) => !value)} panelId={panelId} />}
+          </div>
         </div>
         <p className="line-clamp-3 text-[0.96rem] text-text-secondary">{summary}</p>
         <TechTags items={project.techStack} limit={open ? undefined : 5} />
         {open && <MorePanel id={panelId} highlights={highlights} fullDescription={fullDescription} />}
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-0.5">
-          {hasMore && <MoreToggle open={open} onToggle={() => setOpen((value) => !value)} panelId={panelId} />}
-          <LinkList links={projectLinks(project)} />
-        </div>
+        <LinkList links={projectLinks(project)} />
       </div>
     </article>
   );

@@ -29,9 +29,9 @@ export function FeaturedProject({ project }) {
         <p className="line-clamp-4 max-w-[62ch] text-text-secondary">{summary}</p>
         <TechTags items={project.techStack} limit={open ? undefined : 7} />
         {open && <MorePanel id={panelId} highlights={highlights} fullDescription={fullDescription} />}
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-          {hasMore && <MoreToggle open={open} onToggle={() => setOpen((value) => !value)} panelId={panelId} />}
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
           <LinkList links={projectLinks(project)} />
+          {hasMore && <MoreToggle open={open} onToggle={() => setOpen((value) => !value)} panelId={panelId} />}
         </div>
       </div>
     </article>
