@@ -27,11 +27,9 @@ function HackathonRow({ hackathon, onOpen }) {
   const sponsors = hackathon.sponsors || [];
   const facts = [hackathon.organizer, hackathon.duration, members.length > 0 && `team of ${members.length}`].filter(Boolean).join(', ');
   const credits = [
-    members.length > 0 && `Team: ${members.map((member) => member.name).join(', ')}.`,
-    sponsors.length > 0 && `Sponsors: ${sponsors.join(', ')}.`,
-  ]
-    .filter(Boolean)
-    .join(' ');
+    { label: 'Team', value: members.map((member) => member.name).join(', ') },
+    { label: 'Sponsors', value: sponsors.join(', ') },
+  ].filter((credit) => credit.value);
 
   return (
     <Row meta={formatMonthYear(hackathon.date)}>
@@ -58,7 +56,16 @@ function HackathonRow({ hackathon, onOpen }) {
             {facts && <p className="text-[0.93rem] text-text-secondary">{facts}</p>}
           </div>
           <ClampedText text={hackathon.description} lines={2} className="max-w-[62ch] text-text-secondary" />
-          {credits && <p className="text-[0.93rem] text-text-secondary">{credits}</p>}
+          {credits.length > 0 && (
+            <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-[0.93rem]">
+              {credits.map((credit) => (
+                <div key={credit.label} className="contents">
+                  <dt className="font-semibold text-text-primary">{credit.label}</dt>
+                  <dd className="text-text-secondary">{credit.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
           <TechTags items={hackathon.tags} limit={7} />
           <LinkList links={hackathonLinks(hackathon)} />
         </div>
